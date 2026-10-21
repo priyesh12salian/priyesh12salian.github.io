@@ -8,18 +8,14 @@
   <meta property="og:title" content="Priyesh Salian">
   <meta property="og:description" content="Personal site of Priyesh Salian.">
   <meta property="og:url" content="https://priyesh12salian.github.io/">
+  <meta property="og:image" content="https://priyesh12salian.github.io/assets/images/hero.webp">
   <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="bg" aria-hidden="true">
-    <span class="blob blob-1"></span>
-    <span class="blob blob-2"></span>
-    <span class="blob blob-3"></span>
-  </div>
 
   <header class="nav">
     <a class="logo" href="#top">PS<span>.</span></a>
@@ -31,22 +27,45 @@
   <main id="top">
     <!-- HERO -->
     <section class="hero">
-      <p class="eyebrow">Hello, I'm</p>
-      <h1>Priyesh <span class="gradient-text">Salian</span></h1>
-      <p class="tagline">
-        I build things for the web and beyond.
-        <!-- EDIT: replace with your one-line tagline -->
-      </p>
-      <div class="hero-actions">
-        <a href="#about" class="btn">About me</a>
-        <a href="https://github.com/priyesh12salian" class="btn btn-ghost" target="_blank" rel="noopener">GitHub ↗</a>
+      <div class="halftone" aria-hidden="true"></div>
+      <div class="glow" aria-hidden="true"></div>
+
+      <h1 class="headline" aria-label="Priyesh Salian">
+        <span>Priyesh</span>
+        <span>Salian</span>
+      </h1>
+
+      <!-- Floating riding badges -->
+      <div class="badges" aria-hidden="true">
+        <span class="badge b1 behind" title="Helmet">
+          <svg viewBox="0 0 48 48"><path d="M8 26a16 16 0 0 1 32 0v8a4 4 0 0 1-4 4H14l-6-8z" fill="currentColor"/><path d="M12 25h24v6a3 3 0 0 1-3 3H18z" fill="#0b0b0b" opacity=".85"/></svg>
+        </span>
+        <span class="badge b2 front" title="Motorbike">
+          <svg viewBox="0 0 48 48"><circle cx="12" cy="32" r="7" fill="none" stroke="currentColor" stroke-width="3.5"/><circle cx="36" cy="32" r="7" fill="none" stroke="currentColor" stroke-width="3.5"/><path d="M12 32l8-12h9l5 12M20 20l-3-6h-6M29 20l4-8h6" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <span class="badge b3 behind" title="Mountains">
+          <svg viewBox="0 0 48 48"><path d="M4 38l12-20 7 11 5-8 16 17z" fill="currentColor"/><path d="M16 18l3 5-3 2-3-2z" fill="#fff" opacity=".9"/></svg>
+        </span>
+        <span class="badge b4 front" title="Speed">
+          <svg viewBox="0 0 48 48"><path d="M8 34a16 16 0 1 1 32 0" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path d="M24 34L33 19" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><circle cx="24" cy="34" r="3.5" fill="currentColor"/></svg>
+        </span>
+        <span class="badge b5 behind" title="Road">
+          <svg viewBox="0 0 48 48"><path d="M18 8h12l10 32H8z" fill="currentColor"/><path d="M24 12v6M24 22v6M24 32v6" stroke="#0b0b0b" stroke-width="3" stroke-linecap="round"/></svg>
+        </span>
       </div>
+
+      <img class="rider" src="assets/images/hero.webp" alt="Priyesh Salian sitting on a KTM Duke, putting on a helmet" width="1800" height="1512" fetchpriority="high">
+
+      <a href="#about" class="scroll-cue" aria-label="Scroll to about">
+        <span></span>
+      </a>
     </section>
 
     <!-- ABOUT -->
     <section class="about" id="about">
       <div class="card">
-        <h2>About</h2>
+        <p class="eyebrow">About</p>
+        <h2>Builder. Rider. Always moving.</h2>
         <p>
           <!-- EDIT: write 2–3 sentences about yourself -->
           I'm Priyesh, a developer who enjoys turning ideas into clean, working
@@ -54,8 +73,8 @@
           what I'm building and learning.
         </p>
         <p>
-          When I'm not coding, you'll probably find me exploring new tools,
-          reading, or planning the next side project.
+          When I'm not coding, you'll find me on the Duke chasing mountain roads,
+          exploring new tools, or planning the next side project.
         </p>
         <ul class="links">
           <li><a href="https://github.com/priyesh12salian" target="_blank" rel="noopener">GitHub</a></li>
@@ -66,7 +85,7 @@
   </main>
 
   <footer>
-    <p>© <span id="year"></span> Priyesh Salian · Built with HTML, CSS &amp; JS · Hosted on GitHub Pages</p>
+    <p>© <span id="year"></span> Priyesh Salian · Hosted on GitHub Pages</p>
   </footer>
 
   <script src="js/main.js"></script>

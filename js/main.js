@@ -2,7 +2,7 @@
 document.getElementById('year').textContent = new Date().getFullYear();
 
 // Reveal-on-scroll for sections
-const targets = document.querySelectorAll('.hero, .about .card');
+const targets = document.querySelectorAll('.about .card');
 targets.forEach(el => el.classList.add('reveal'));
 
 const io = new IntersectionObserver((entries) => {
