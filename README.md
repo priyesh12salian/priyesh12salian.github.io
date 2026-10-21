@@ -14,4 +14,3 @@ Preview locally:
 python3 -m http.server 8000
 ```
 
-See `GITHUB_PAGES_SETUP.md` for deployment notes.
