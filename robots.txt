@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://priyesh12salian.github.io/sitemap.xml
