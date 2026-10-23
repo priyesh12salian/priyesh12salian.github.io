@@ -91,3 +91,10 @@ if (window.matchMedia('(pointer: fine)').matches && !reduced) {
     });
   });
 }
+
+// GA4 click events (no-op if gtag is blocked)
+const track = (name, params) => { if (typeof gtag === 'function') gtag('event', name, params); };
+document.querySelectorAll('a[href*="linkedin.com"]').forEach(a => a.addEventListener('click', () => track('click_linkedin', { location: a.closest('section')?.id || 'nav' })));
+document.querySelectorAll('a[href*="github.com"]').forEach(a => a.addEventListener('click', () => track('click_github', { location: a.closest('section')?.id || 'nav' })));
+document.querySelectorAll('.project').forEach(card => card.addEventListener('click', () => track('view_project', { project: card.querySelector('h3')?.textContent.trim() })));
+document.querySelectorAll('.nav-links a, .hero-actions a').forEach(a => a.addEventListener('click', () => track('nav_click', { target: a.getAttribute('href') })));
