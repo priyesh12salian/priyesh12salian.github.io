@@ -4,137 +4,274 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Priyesh Salian</title>
-  <meta name="description" content="Priyesh Salian — code that ships, roads that call.">
-  <meta property="og:title" content="Priyesh Salian">
-  <meta property="og:description" content="Code that ships. Roads that call.">
+  <meta name="description" content="Priyesh Salian — NetSuite Techno-Functional Consultant with 8+ years of experience in SuiteScript, integrations, and AI-driven automation.">
+  <meta property="og:title" content="Priyesh Salian — NetSuite Techno-Functional Consultant">
+  <meta property="og:description" content="8+ years of NetSuite implementation, SuiteScript, integrations, and AI agents.">
   <meta property="og:url" content="https://priyesh12salian.github.io/">
-  <meta property="og:image" content="https://priyesh12salian.github.io/assets/images/hero.webp">
   <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div class="frame">
+<div class="bg" aria-hidden="true">
+  <span class="orb o1"></span><span class="orb o2"></span><span class="orb o3"></span>
+  <span class="grid-lines"></span>
+</div>
+<div class="cursor-glow" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <a class="logo" href="#top">PS<span>.</span></a>
+  <nav class="nav-links" id="navLinks">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact" class="nav-cta">Contact</a>
+  </nav>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+</header>
+
+<main id="top">
 
   <!-- ================= HERO ================= -->
-  <section class="hero" id="top">
-    <div class="panel-orange">
-      <span class="shape s1" aria-hidden="true"></span>
-      <span class="shape s2" aria-hidden="true"></span>
-
-      <a class="logo" href="#top">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20 14 4l2 4-6 12zM13 20l5-9 2 4-3 5z" fill="currentColor"/></svg>
-        <b>PS<span>.</span></b>
-      </a>
-
-      <div class="hero-copy">
-        <h1>Priyesh</h1>
-        <p class="tagline">Code that ships.<br>Roads that call.</p>
-        <a href="#about" class="btn-pill">About me
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-
-        <div class="trusted">
-          <div class="avatars" aria-hidden="true">
-            <!-- EDIT: replace with real avatar images -->
-            <span class="av av1"></span>
-            <span class="av av2"></span>
-            <span class="av av3"></span>
-            <span class="av av4"></span>
-            <span class="av more">+12</span>
-          </div>
-          <p><!-- EDIT: caption -->Trusted by teams and riders<br>who like things done right.</p>
-        </div>
-      </div>
+  <section class="hero">
+    <p class="kicker reveal"><span class="dot"></span> Sr. Solution Strategist · Pune, India</p>
+    <h1 class="reveal">Priyesh <span class="accent">Salian</span></h1>
+    <p class="typed-line reveal"><span id="typed"></span><span class="caret"></span></p>
+    <p class="lead reveal">
+      8+ years turning NetSuite requirements into working solutions —
+      SuiteScript, integrations, reporting, and now AI agents that do the busywork.
+    </p>
+    <div class="hero-actions reveal">
+      <a href="#projects" class="btn btn-primary">View projects</a>
+      <a href="#contact" class="btn btn-ghost">Get in touch</a>
     </div>
-
-    <div class="panel-white">
-      <nav class="nav">
-        <a href="#work">Work</a>
-        <a href="#about">About</a>
-        <button class="menu-btn" type="button" aria-label="Menu" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-      </nav>
-
-      <div class="available">
-        <p class="label">Available for <i></i></p>
-        <h2>Collaborations &amp;<br>Side Projects</h2>
-      </div>
-
-      <figure class="testimonial">
-        <span class="quote-mark" aria-hidden="true">&ldquo;</span>
-        <!-- EDIT: replace placeholder testimonial -->
-        <blockquote>Placeholder quote — Priyesh delivered outstanding work that exceeded our expectations.</blockquote>
-        <figcaption>
-          <div>
-            <strong>Name Surname</strong>
-            <small>Role, Company</small>
-          </div>
-          <span class="av av3 big" aria-hidden="true"></span>
-        </figcaption>
-      </figure>
-    </div>
-
-    <img class="rider" src="assets/images/hero.webp" alt="Priyesh Salian sitting on a KTM Duke, putting on a helmet" width="1800" height="1512" fetchpriority="high">
-  </section>
-
-  <!-- ================= WORK ================= -->
-  <section class="section" id="work">
-    <p class="label">Selected work <i></i></p>
-    <h2 class="section-title">Things I've built</h2>
-    <div class="work-grid">
-      <!-- EDIT: replace placeholder projects -->
-      <article class="work-card">
-        <span class="work-thumb t1" aria-hidden="true"></span>
-        <h3>Project One</h3>
-        <p>Short description of the project and what it does.</p>
-      </article>
-      <article class="work-card">
-        <span class="work-thumb t2" aria-hidden="true"></span>
-        <h3>Project Two</h3>
-        <p>Short description of the project and what it does.</p>
-      </article>
-      <article class="work-card">
-        <span class="work-thumb t3" aria-hidden="true"></span>
-        <h3>Project Three</h3>
-        <p>Short description of the project and what it does.</p>
-      </article>
-    </div>
+    <ul class="stats reveal">
+      <li><strong><span class="count" data-to="8">0</span>+</strong><span>Years in NetSuite</span></li>
+      <li><strong><span class="count" data-to="3">0</span>×</strong><span>Oracle NetSuite certified</span></li>
+      <li><strong><span class="count" data-to="4">0</span></strong><span>Roles, freelance to lead</span></li>
+    </ul>
+    <a href="#about" class="scroll-cue" aria-label="Scroll down"><span></span></a>
   </section>
 
   <!-- ================= ABOUT ================= -->
-  <section class="section about" id="about">
+  <section class="section" id="about">
+    <div class="section-head reveal">
+      <span class="num">01</span><h2>About</h2>
+    </div>
     <div class="about-grid">
-      <div>
-        <p class="label">About <i></i></p>
-        <h2 class="section-title">Builder. Rider.<br>Always moving.</h2>
+      <div class="about-text reveal">
+        <p>
+          I'm a NetSuite Techno-Functional Consultant with 8.3+ years of hands-on
+          experience across implementation, customisation, and integration. I've
+          worked the full stack of the platform — SuiteBuilder, SuiteScript 1.0 to 2.1,
+          SuiteFlow, SuiteAnalytics, SuiteBundler, and REST web services.
+        </p>
+        <p>
+          My work spans end-to-end EDI and intercompany implementations, procurement
+          network and CRM integrations, manufacturing and WMS modules, custom approval
+          workflows, and reporting built on saved searches, datasets, and SuiteQL.
+          Lately I spend a lot of time pairing NetSuite with AI: agents that read
+          invoices and purchase orders, and MCP-driven automations that act inside the
+          ERP.
+        </p>
+        <p>
+          I also help teams adopt NetSuite well — training on standard practices on
+          both the functional and technical side.
+        </p>
       </div>
-      <div class="about-text">
-        <p>
-          <!-- EDIT: write 2–3 sentences about yourself -->
-          I'm Priyesh, a developer who enjoys turning ideas into clean, working
-          software. This site is my corner of the internet — a place to share
-          what I'm building and learning.
-        </p>
-        <p>
-          When I'm not coding, you'll find me on the Duke chasing mountain roads,
-          exploring new tools, or planning the next side project.
-        </p>
-        <ul class="links">
-          <li><a href="https://github.com/priyesh12salian" target="_blank" rel="noopener">GitHub</a></li>
-          <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a></li>
+      <aside class="about-side reveal">
+        <h3>Business processes</h3>
+        <ul class="chips">
+          <li>Order to Cash</li><li>Procure to Pay</li><li>Inventory</li>
+          <li>Manufacturing</li><li>WMS</li><li>Intercompany / OneWorld</li>
+          <li>Project Management</li><li>Support Cases</li><li>Payment Requests</li>
         </ul>
-      </div>
+      </aside>
     </div>
   </section>
 
-  <footer>
-    <p>© <span id="year"></span> Priyesh Salian</p>
-  </footer>
-</div>
+  <!-- ================= EXPERIENCE ================= -->
+  <section class="section" id="experience">
+    <div class="section-head reveal">
+      <span class="num">02</span><h2>Experience &amp; Education</h2>
+    </div>
+    <ol class="timeline">
+      <li class="reveal">
+        <span class="tl-dot"></span>
+        <div class="tl-card">
+          <p class="tl-date">Jan 2025 — Present</p>
+          <h3>Sr. Solution Strategist</h3>
+          <p class="tl-org">SankalvaX · Pune, India</p>
+          <p>Designing NetSuite solutions and AI-driven automation for clients — from transaction frameworks and reporting suitelets to agents that create bills and sales orders.</p>
+        </div>
+      </li>
+      <li class="reveal">
+        <span class="tl-dot"></span>
+        <div class="tl-card">
+          <p class="tl-date">May 2022 — Jan 2025</p>
+          <h3>Lead NetSuite Techno Functional Consultant</h3>
+          <p class="tl-org">Wesco · Pune, India</p>
+          <p>Led technical delivery on NetSuite: integrations, custom workflows, scripted reports, and platform support for a global distribution business.</p>
+        </div>
+      </li>
+      <li class="reveal">
+        <span class="tl-dot"></span>
+        <div class="tl-card">
+          <p class="tl-date">Feb 2021 — May 2022</p>
+          <h3>Application Developer</h3>
+          <p class="tl-org">KPI · Mangaluru, India</p>
+          <p>Built SuiteScript customisations, RESTlets, and saved-search reporting across order-to-cash and procure-to-pay processes.</p>
+        </div>
+      </li>
+      <li class="reveal">
+        <span class="tl-dot"></span>
+        <div class="tl-card">
+          <p class="tl-date">Mar 2018 — Feb 2021</p>
+          <h3>NetSuite Technical Consultant</h3>
+          <p class="tl-org">Freelance · Karnataka, India</p>
+          <p>Delivered scripted customisations, forms, templates, CSV imports, and integrations for a range of NetSuite customers.</p>
+        </div>
+      </li>
+      <li class="reveal edu">
+        <span class="tl-dot"></span>
+        <div class="tl-card">
+          <p class="tl-date">2015 — 2019</p>
+          <h3>B.E. Information Science</h3>
+          <p class="tl-org">Shree Devi Institute of Technology · Mangalore</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ================= SKILLS ================= -->
+  <section class="section" id="skills">
+    <div class="section-head reveal">
+      <span class="num">03</span><h2>Skills &amp; Certifications</h2>
+    </div>
+    <div class="skills-grid">
+      <article class="skill-card reveal">
+        <h3>NetSuite platform</h3>
+        <ul class="chips">
+          <li>SuiteScript 1.0 / 2.0 / 2.1</li><li>SuiteBuilder</li><li>SuiteFlow</li>
+          <li>SuiteAnalytics</li><li>SuiteBundler</li><li>SuiteQL</li><li>Saved Search</li>
+          <li>Datasets &amp; Workbooks</li><li>Suitelets &amp; RESTlets</li><li>Advanced PDF / FreeMarker</li>
+          <li>Custom Records &amp; Forms</li><li>Roles &amp; Dashboards</li>
+        </ul>
+      </article>
+      <article class="skill-card reveal">
+        <h3>Integrations</h3>
+        <ul class="chips">
+          <li>REST Web Services</li><li>EDI</li><li>SAP Ariba (cXML)</li><li>Boomi</li>
+          <li>Salesforce</li><li>Monday.com</li><li>SFTP</li><li>CSV Import &amp; Mass Update</li>
+        </ul>
+      </article>
+      <article class="skill-card reveal">
+        <h3>AI &amp; tooling</h3>
+        <ul class="chips">
+          <li>NetSuite MCP Server</li><li>Claude Skills</li><li>OpenAI API</li>
+          <li>AI document extraction</li><li>JavaScript</li><li>SQL</li>
+        </ul>
+      </article>
+      <article class="skill-card certs reveal">
+        <h3>Certifications</h3>
+        <ul class="cert-list">
+          <li><span class="cert-badge">✓</span>Oracle NetSuite Certified Financial Associate</li>
+          <li><span class="cert-badge">✓</span>Oracle NetSuite Certified BI &amp; Reporting Associate</li>
+          <li><span class="cert-badge">✓</span>Oracle NetSuite Certified AI Foundations Associate</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================= PROJECTS ================= -->
+  <section class="section" id="projects">
+    <div class="section-head reveal">
+      <span class="num">04</span><h2>Projects</h2>
+    </div>
+    <div class="project-grid">
+      <article class="project reveal">
+        <span class="p-icon">AI</span>
+        <h3>AP Invoice AI Agent</h3>
+        <p>Reads vendor invoices, extracts header and line data, and creates vendor bills in NetSuite with validation against POs and items.</p>
+        <ul class="tags"><li>AI / OCR</li><li>SuiteScript 2.1</li><li>Procure to Pay</li></ul>
+      </article>
+      <article class="project reveal">
+        <span class="p-icon">AI</span>
+        <h3>Sales Order AI Agent</h3>
+        <p>Parses customer purchase-order PDFs and creates NetSuite sales orders, matching customers and items automatically.</p>
+        <ul class="tags"><li>AI / OCR</li><li>RESTlet</li><li>Order to Cash</li></ul>
+      </article>
+      <article class="project reveal">
+        <span class="p-icon">MCP</span>
+        <h3>Invoice Payment Reminders</h3>
+        <p>NetSuite MCP server paired with Claude to find overdue invoices and send payment reminders without manual follow-up.</p>
+        <ul class="tags"><li>NetSuite MCP</li><li>Claude</li><li>Accounts Receivable</li></ul>
+      </article>
+      <article class="project reveal">
+        <span class="p-icon">GST</span>
+        <h3>India e-Invoice Integration</h3>
+        <p>Integration with the Indian government e-invoice portal covering IRN generation, QR codes, and e-way bills from NetSuite transactions.</p>
+        <ul class="tags"><li>REST Integration</li><li>Compliance</li><li>Advanced PDF</li></ul>
+      </article>
+      <article class="project reveal">
+        <span class="p-icon">AR</span>
+        <h3>AR / AP Aging Suitelet</h3>
+        <p>Aging report with selectable long-term buckets, period or date as-of, consolidated FX, drill-down, GL reconciliation tile, and CSV export within governance limits.</p>
+        <ul class="tags"><li>Suitelet</li><li>Multi-Subsidiary</li><li>Reporting</li></ul>
+      </article>
+      <article class="project reveal">
+        <span class="p-icon">$</span>
+        <h3>Freight &amp; Landed Cost Suite</h3>
+        <p>Custom-record data model and suitelets that attribute inbound, outbound, and duty costs per order line and invoice, prorated so partial invoices never double count.</p>
+        <ul class="tags"><li>SuiteQL</li><li>Custom Records</li><li>Landed Cost</li></ul>
+      </article>
+      <article class="project reveal">
+        <span class="p-icon">✓</span>
+        <h3>One-Click Email PO Approval</h3>
+        <p>Two-stage purchase-order approval through tokenised, single-use links in email, handled by an available-without-login suitelet. No NetSuite login needed.</p>
+        <ul class="tags"><li>SuiteFlow</li><li>Suitelet</li><li>Approvals</li></ul>
+      </article>
+      <article class="project reveal">
+        <span class="p-icon">WMS</span>
+        <h3>Order Allocation &amp; WMS Report</h3>
+        <p>Expandable sales-order report showing allocation and available-stock percentages with WMS transmission status, threshold highlighting, and export.</p>
+        <ul class="tags"><li>Suitelet</li><li>Inventory</li><li>WMS</li></ul>
+      </article>
+      <article class="project reveal">
+        <span class="p-icon">#</span>
+        <h3>Transaction Numbering Framework</h3>
+        <p>Hybrid numbering for a manufacturing implementation: native auto-numbering for standard types, scripted numbering for custom transaction types, and a journal-number validator.</p>
+        <ul class="tags"><li>User Event</li><li>Custom Transactions</li><li>SDF</li></ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section class="section contact" id="contact">
+    <div class="contact-card reveal">
+      <span class="num">05</span>
+      <h2>Let's build something in NetSuite.</h2>
+      <p>Open to consulting, collaborations, and side projects. The quickest way to reach me is LinkedIn.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://www.linkedin.com/in/priyesh-salian-03b0551b5" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+          LinkedIn
+        </a>
+        <a class="btn btn-ghost" href="https://github.com/priyesh12salian" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5A12 12 0 0 0 8.2 23.9c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>© <span id="year"></span> Priyesh Salian · Built with HTML, CSS &amp; JS</p>
+</footer>
 
 <script src="js/main.js"></script>
 </body>
