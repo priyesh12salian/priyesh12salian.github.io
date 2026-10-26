@@ -319,3 +319,11 @@ body { background: var(--bg); }
   .tl-dot { transition: none; }
   .modal-body .chips li, .modal-body .tl-bullets li, .modal-body .cert-list li { animation: none; }
 }
+
+/* ---------- Background: faint dot grid across the page ---------- */
+body::before { content: ""; position: fixed; inset: 0; z-index: -2; pointer-events: none;
+  background-image: radial-gradient(circle, rgba(15, 23, 42, .11) 1px, transparent 1.2px);
+  background-size: 22px 22px; }
+.hero::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(ellipse 70% 80% at 30% 55%, rgba(255,255,255,.95), rgba(255,255,255,0) 70%); }
+.contact, footer { position: relative; }
