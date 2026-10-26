@@ -8,7 +8,27 @@ const nav = document.getElementById('nav');
 const links = document.querySelectorAll('.nav-links a');
 const toggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');
-window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 24), { passive: true });
+const progress = document.getElementById('progress');
+const onScroll = () => {
+  nav.classList.toggle('scrolled', window.scrollY > 24);
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  progress.style.transform = `scaleX(${max > 0 ? Math.min(1, window.scrollY / max) : 0})`;
+};
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+// Sliding underline that follows the active nav link (desktop only)
+const ink = document.getElementById('navInk');
+if (finePointer && !reducedMotion) navLinks.classList.add('has-ink');
+const moveInk = () => {
+  if (!navLinks.classList.contains('has-ink')) return;
+  const a = navLinks.querySelector('a.active:not(.nav-cta)');
+  if (!a) { ink.classList.remove('on'); return; }
+  ink.style.left = a.offsetLeft + 'px';
+  ink.style.width = a.offsetWidth + 'px';
+  ink.classList.add('on');
+};
+window.addEventListener('resize', moveInk);
 toggle.addEventListener('click', () => {
   const open = navLinks.classList.toggle('open');
   toggle.classList.toggle('open', open);
@@ -19,19 +39,46 @@ links.forEach(a => a.addEventListener('click', () => { navLinks.classList.remove
 const sections = document.querySelectorAll('main section[id]');
 const spy = new IntersectionObserver((entries) => {
   entries.forEach(e => {
-    if (e.isIntersecting) links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+    if (e.isIntersecting) {
+      links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+      moveInk();
+    }
   });
 }, { rootMargin: '-45% 0px -50% 0px' });
 sections.forEach(s => spy.observe(s));
 
-// Slide-up on scroll
-const reveals = document.querySelectorAll('.reveal, .section-head');
+// Slide-up on scroll, cards in a grid appear one after another
+['.skills-grid', '.case-list', '.project-grid', '.timeline', '.cert-list'].forEach(sel => {
+  document.querySelectorAll(sel).forEach(group => {
+    group.querySelectorAll(':scope > .reveal').forEach((el, i) => el.style.setProperty('--d', Math.min(i, 8) * 80 + 'ms'));
+  });
+});
+const reveals = document.querySelectorAll('.reveal, .section-head, .timeline');
 const io = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); }
   });
 }, { threshold: 0.1 });
 reveals.forEach(el => io.observe(el));
+
+// Typed title line (full text stays in the DOM for search engines and screen readers)
+const typed = document.getElementById('typed');
+if (typed) {
+  const text = typed.dataset.text, out = typed.querySelector('.typed-text');
+  if (reducedMotion) { out.textContent = text; }
+  else {
+    out.textContent = '';
+    typed.classList.add('typing');
+    const start = performance.now() + 650, perChar = 42;
+    const tick = (now) => {
+      const n = Math.max(0, Math.min(text.length, Math.floor((now - start) / perChar)));
+      out.textContent = text.slice(0, n);
+      if (n < text.length) requestAnimationFrame(tick);
+      else setTimeout(() => typed.classList.remove('typing'), 1800);
+    };
+    requestAnimationFrame(tick);
+  }
+}
 
 // Counting numbers in the hero
 const counters = document.querySelectorAll('.count');
@@ -89,6 +136,7 @@ function openModal(card) {
   modalBody.innerHTML = details.outerHTML;
   const tags = card.querySelector('.tags');
   if (tags && card.classList.contains('project')) modalBody.appendChild(tags.cloneNode(true));
+  modalBody.querySelectorAll('.chips li, .tl-bullets li, .cert-list li').forEach((li, i) => li.style.setProperty('--i', i));
   lastFocus = card;
   modal.classList.add('open');
   modal.setAttribute('aria-hidden', 'false');
