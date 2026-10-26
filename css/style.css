@@ -260,10 +260,10 @@ body.modal-open { overflow: hidden; }
 }
 
 /* ---------- Motion pass 2: hero, nav, stagger, timeline, background ---------- */
-html { overflow-x: hidden; }
+html, body { overflow-x: clip; }
 body { position: relative; }
-.bg-glow { position: absolute; top: -260px; right: -260px; width: 960px; height: 760px; z-index: -1; pointer-events: none;
-  background: radial-gradient(closest-side, var(--accent-soft), rgba(234,241,255,.5) 45%, transparent 72%);
+.bg-glow { position: absolute; top: 0; right: 0; width: min(720px, 100%); height: 560px; z-index: -1; pointer-events: none;
+  background: radial-gradient(520px 420px at 92% 18%, var(--accent-soft), rgba(234,241,255,.5) 45%, transparent 72%);
   animation: drift 18s ease-in-out infinite alternate; }
 @keyframes drift { from { transform: translate(0, 0) scale(1); } to { transform: translate(-90px, 70px) scale(1.1); } }
 body { background: var(--bg); }
@@ -308,7 +308,7 @@ body { background: var(--bg); }
 @media (max-width: 860px) {
   .nav-ink { display: none; }
   .nav-links.has-ink a.active::after { transform: scaleX(1); }
-  .bg-glow { width: 640px; height: 520px; top: -200px; right: -220px; }
+  .bg-glow { height: 420px; background-size: 100% 100%; }
 }
 @media (prefers-reduced-motion: reduce) {
   .bg-glow { animation: none; }
