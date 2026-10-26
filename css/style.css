@@ -194,3 +194,67 @@ footer { text-align: center; padding: 26px 16px 34px; color: var(--muted); font-
   .reveal { transition: none; opacity: 1; transform: none; }
   * { transition-duration: 0s !important; }
 }
+
+/* ---------- Compact cards + popup ---------- */
+.details { display: none; }
+.clickable { cursor: pointer; position: relative; transform-style: preserve-3d; will-change: transform; }
+.clickable:hover { border-color: var(--accent); }
+.card-hint { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; font-size: .8rem; font-weight: 600; color: var(--accent); opacity: .75; transition: opacity .2s, gap .2s; }
+.card-hint svg { width: 14px; height: 14px; transition: transform .2s; }
+.clickable:hover .card-hint { opacity: 1; }
+.clickable:hover .card-hint svg { transform: translateX(3px); }
+.card-sub { color: var(--muted); font-size: .9rem; margin: -4px 0 0; }
+.tl-card.clickable:hover { transform: none; }
+.tl-card .card-hint { margin-top: 4px; }
+.tl-org { margin-bottom: 4px; }
+.skill-card h3 { margin-bottom: 6px; }
+
+.case-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; }
+.case { display: block; padding: 24px; }
+.case:hover { transform: none; }
+.case .case-body h3 { margin-bottom: 8px; font-size: 1.15rem; }
+.teaser { color: var(--muted); font-size: .93rem; margin-bottom: 12px; }
+.case .card-hint { display: inline-flex; margin-top: 12px; }
+.case .tags { margin-bottom: 0; }
+
+.section-head h2::after { transform: scaleX(0); transform-origin: left; transition: transform .6s cubic-bezier(.2,.7,.2,1) .2s; }
+.section-head.visible h2::after { transform: scaleX(1); }
+.reveal { transform: translateY(22px); }
+
+.modal { position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center; padding: 20px; }
+.modal.open { display: flex; }
+.modal-backdrop { position: absolute; inset: 0; background: rgba(15, 23, 42, .55); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); animation: fade .25s ease; }
+.modal-card { position: relative; width: min(820px, 100%); max-height: min(86vh, 900px); overflow: auto; background: #fff; border-radius: 18px; padding: 32px 36px 36px; box-shadow: 0 30px 80px rgba(15,23,42,.35); animation: pop .32s cubic-bezier(.2,.8,.2,1); }
+@keyframes fade { from { opacity: 0; } }
+@keyframes pop { from { opacity: 0; transform: translateY(14px) scale(.96); } }
+.modal-close { position: absolute; top: 14px; right: 14px; width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--border); background: #fff; cursor: pointer; display: grid; place-items: center; color: var(--muted); transition: background .2s, color .2s, transform .2s; }
+.modal-close svg { width: 18px; height: 18px; }
+.modal-close:hover { background: var(--surface); color: var(--fg); transform: rotate(90deg); }
+.modal-kind { font-family: var(--mono); font-size: .74rem; color: var(--teal); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 6px; }
+.modal-card h3 { font-size: 1.5rem; font-weight: 800; padding-right: 40px; }
+.modal-sub { color: var(--muted); font-size: .95rem; margin: 4px 0 0; }
+.modal-sub:empty { display: none; }
+.modal-body { margin-top: 20px; }
+.modal-body .details { display: block; }
+.modal-body .tl-bullets li { margin-bottom: 10px; font-size: 1rem; }
+.modal-body .chips li { font-size: .9rem; padding: 8px 14px; }
+.modal-body .cert-list { grid-template-columns: 1fr; }
+.modal-body .case-fig { margin-bottom: 22px; }
+.modal-body dl { display: grid; grid-template-columns: 96px 1fr; gap: 10px 16px; margin: 0; }
+.modal-body dt { font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); padding-top: 4px; }
+.modal-body dd { margin: 0; color: var(--muted); font-size: 1rem; }
+.modal-body dd.case-result { color: var(--fg); font-weight: 500; }
+.modal-body > .details > p { color: var(--muted); font-size: 1.02rem; }
+body.modal-open { overflow: hidden; }
+
+@media (max-width: 640px) {
+  .modal { padding: 0; align-items: flex-end; }
+  .modal-card { border-radius: 18px 18px 0 0; max-height: 92vh; padding: 26px 20px 30px; animation-name: slideup; }
+  @keyframes slideup { from { transform: translateY(40px); opacity: 0; } }
+  .modal-body dl { grid-template-columns: 1fr; gap: 4px; }
+  .modal-body dt { margin-top: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .modal-card, .modal-backdrop { animation: none; }
+  .section-head h2::after { transform: none; transition: none; }
+}
