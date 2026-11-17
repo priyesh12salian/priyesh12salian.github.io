@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SuiteScript snippets — Priyesh Salian</title>
+  <meta name="description" content="Short, reusable SuiteScript 2.1 snippets: SuiteQL paging, RESTlet skeleton, governance-safe Map/Reduce, saved search paging.">
+  <link rel="canonical" href="https://priyesh12salian.github.io/snippets.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Priyesh Salian">
+  <meta property="og:title" content="SuiteScript snippets — Priyesh Salian">
+  <meta property="og:description" content="Reusable SuiteScript 2.1 snippets for everyday NetSuite work.">
+  <meta property="og:url" content="https://priyesh12salian.github.io/snippets.html">
+  <meta property="og:image" content="https://priyesh12salian.github.io/assets/images/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <link rel="alternate" type="application/rss+xml" title="Priyesh Salian — Notes" href="/feed.xml">
+  <script>(function(){try{var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YEP2NZD2GF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-YEP2NZD2GF');
+  </script>
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="nav scrolled" id="nav">
+  <a class="logo" href="/">PS<span>.</span></a>
+  <nav class="nav-links" id="navLinks">
+    <a href="/#about">About</a>
+    <a href="/#experience">Experience</a>
+    <a href="/#skills">Skills</a>
+    <a href="/#work">Case Studies</a>
+    <a href="/#projects">Projects</a>
+    <a href="/#services">Services</a>
+    <a href="/notes.html">Notes</a>
+    <a href="/snippets.html" class="active">Snippets</a>
+    <a href="/#contact" class="nav-cta">Contact</a>
+    <span class="nav-ink" id="navInk" aria-hidden="true"></span>
+  </nav>
+  <div class="nav-right">
+    <button class="theme-btn" id="themeBtn" aria-label="Switch theme" title="Switch theme">
+      <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4l1.4 1.4M4.9 19.1l1.4-1.4m11.4-11.4l1.4-1.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+  </div>
+  <span class="progress" id="progress" aria-hidden="true"></span>
+</header>
+
+<main id="main" class="page">
+  <section class="section">
+    <div class="section-head reveal">
+      <h2>SuiteScript snippets</h2>
+    </div>
+    <p class="section-intro reveal">Small pieces of SuiteScript 2.1 I reuse on most projects. Each one is self-contained and safe to drop into an SDF project. Copy, rename the ids, go.</p>
+    <div class="snippet-list">
+      <article class="snippet reveal">
+        <div class="snippet-head"><h2>SuiteQL: fetch every row with paging</h2><p>SuiteQL caps a single run at 5,000 rows. This helper pages through a query and returns all results as plain objects, so callers never think about page boundaries.</p></div>
+        <div class="snippet-bar"><span>suiteql-all-rows.js</span><button class="copy-btn" type="button">Copy</button></div>
+        <pre><code>/**
+ * @NApiVersion 2.1
+ * Run a SuiteQL query and return every row, regardless of size.
+ */
+define([&#x27;N/query&#x27;], (query) =&gt; {
+
+  /**
+   * @param {string} sql     SuiteQL with ? placeholders
+   * @param {Array}  params  values for the placeholders
+   * @returns {Object[]}     one plain object per row
+   */
+  function runAll(sql, params = []) {
+    const paged = query.runSuiteQLPaged({ query: sql, params, pageSize: 5000 });
+    const rows = [];
+    paged.pageRanges.forEach((range) =&gt; {
+      const page = paged.fetch({ index: range.index });
+      page.data.asMappedResults().forEach((row) =&gt; rows.push(row));
+    });
+    return rows;
+  }
+
+  // Example: open vendor bills by subsidiary
+  // const bills = runAll(
+  //   &#x27;SELECT id, tranid, foreigntotal FROM transaction WHERE type = ? AND status = ? AND subsidiary = ?&#x27;,
+  //   [&#x27;VendBill&#x27;, &#x27;A&#x27;, 2]
+  // );
+
+  return { runAll };
+});</code></pre>
+      </article>
+      <article class="snippet reveal">
+        <div class="snippet-head"><h2>RESTlet skeleton with validation and a consistent error envelope</h2><p>A RESTlet that always answers in the same shape. Callers get a predictable JSON body for success and failure, and every error is logged with the request it came from.</p></div>
+        <div class="snippet-bar"><span>restlet-skeleton.js</span><button class="copy-btn" type="button">Copy</button></div>
+        <pre><code>/**
+ * @NApiVersion 2.1
+ * @NScriptType Restlet
+ */
+define([&#x27;N/record&#x27;, &#x27;N/log&#x27;], (record, log) =&gt; {
+
+  const ok    = (data)          =&gt; ({ success: true,  data });
+  const fail  = (code, message) =&gt; ({ success: false, error: { code, message } });
+
+  function requireFields(body, fields) {
+    const missing = fields.filter((f) =&gt; body[f] === undefined || body[f] === &#x27;&#x27;);
+    if (missing.length) throw { code: &#x27;MISSING_FIELDS&#x27;, message: `Missing: ${missing.join(&#x27;, &#x27;)}` };
+  }
+
+  function post(body) {
+    try {
+      requireFields(body, [&#x27;entity&#x27;, &#x27;tranDate&#x27;, &#x27;items&#x27;]);
+
+      const so = record.create({ type: record.Type.SALES_ORDER, isDynamic: true });
+      so.setValue({ fieldId: &#x27;entity&#x27;,   value: body.entity });
+      so.setText({  fieldId: &#x27;trandate&#x27;, text:  body.tranDate });
+
+      body.items.forEach((line) =&gt; {
+        so.selectNewLine({ sublistId: &#x27;item&#x27; });
+        so.setCurrentSublistValue({ sublistId: &#x27;item&#x27;, fieldId: &#x27;item&#x27;,     value: line.item });
+        so.setCurrentSublistValue({ sublistId: &#x27;item&#x27;, fieldId: &#x27;quantity&#x27;, value: line.quantity });
+        so.commitLine({ sublistId: &#x27;item&#x27; });
+      });
+
+      return ok({ id: so.save() });
+    } catch (e) {
+      log.error({ title: &#x27;RESTlet POST failed&#x27;, details: { body, error: e } });
+      return fail(e.code || e.name || &#x27;UNEXPECTED&#x27;, e.message || String(e));
+    }
+  }
+
+  return { post };
+});</code></pre>
+      </article>
+      <article class="snippet reveal">
+        <div class="snippet-head"><h2>Map/Reduce that respects governance and summarises errors</h2><p>Map/Reduce gives you governance for free, but failures are easy to lose. This skeleton isolates one record per map call, lets reduce retry safely, and writes a single readable error summary at the end.</p></div>
+        <div class="snippet-bar"><span>mapreduce-skeleton.js</span><button class="copy-btn" type="button">Copy</button></div>
+        <pre><code>/**
+ * @NApiVersion 2.1
+ * @NScriptType MapReduceScript
+ */
+define([&#x27;N/search&#x27;, &#x27;N/record&#x27;, &#x27;N/log&#x27;, &#x27;N/runtime&#x27;], (search, record, log, runtime) =&gt; {
+
+  function getInputData() {
+    // Return a search; each result becomes one map() call.
+    return search.create({
+      type: &#x27;vendorbill&#x27;,
+      filters: [[&#x27;mainline&#x27;, &#x27;is&#x27;, &#x27;T&#x27;], &#x27;AND&#x27;, [&#x27;custbody_sync_status&#x27;, &#x27;anyof&#x27;, &#x27;pending&#x27;]],
+      columns: [&#x27;internalid&#x27;]
+    });
+  }
+
+  function map(ctx) {
+    const row = JSON.parse(ctx.value);
+    // Key by record id so reduce receives exactly one record at a time.
+    ctx.write({ key: row.id, value: row.id });
+  }
+
+  function reduce(ctx) {
+    const id = Number(ctx.key);
+    try {
+      record.submitFields({
+        type: &#x27;vendorbill&#x27;, id,
+        values: { custbody_sync_status: &#x27;done&#x27; },
+        options: { enableSourcing: false, ignoreMandatoryFields: true }
+      });
+    } catch (e) {
+      // Throwing marks the key as failed and keeps the rest of the batch going.
+      throw new Error(`${id}: ${e.message}`);
+    }
+  }
+
+  function summarize(summary) {
+    const errors = [];
+    summary.mapSummary.errors.iterator().each((k, e)  =&gt; { errors.push(`map ${k}: ${JSON.parse(e).message}`);  return true; });
+    summary.reduceSummary.errors.iterator().each((k, e) =&gt; { errors.push(`reduce ${k}: ${JSON.parse(e).message}`); return true; });
+
+    log.audit({
+      title: `${runtime.getCurrentScript().id} finished`,
+      details: { seconds: summary.seconds, usage: summary.usage, yields: summary.yields, failed: errors.length }
+    });
+    if (errors.length) log.error({ title: &#x27;Failed keys&#x27;, details: errors.join(&#x27;\n&#x27;) });
+  }
+
+  return { getInputData, map, reduce, summarize };
+});</code></pre>
+      </article>
+      <article class="snippet reveal">
+        <div class="snippet-head"><h2>Saved search: all results without the 1,000 row limit</h2><p>search.run().getRange() stops at 1,000 rows. runPaged() walks the whole result set and this helper turns each result into a simple object keyed by column label.</p></div>
+        <div class="snippet-bar"><span>search-all-results.js</span><button class="copy-btn" type="button">Copy</button></div>
+        <pre><code>/**
+ * @NApiVersion 2.1
+ * Load a saved search (or an ad-hoc one) and return every result.
+ */
+define([&#x27;N/search&#x27;], (search) =&gt; {
+
+  function toObject(result) {
+    const obj = { id: result.id };
+    result.columns.forEach((col) =&gt; {
+      const key = col.label || col.name;
+      obj[key] = result.getText(col) || result.getValue(col);
+    });
+    return obj;
+  }
+
+  /**
+   * @param {search.Search|string} s  a Search object or a saved search id like &#x27;customsearch_open_pos&#x27;
+   */
+  function getAll(s) {
+    const srch = typeof s === &#x27;string&#x27; ? search.load({ id: s }) : s;
+    const paged = srch.runPaged({ pageSize: 1000 });
+    const out = [];
+    paged.pageRanges.forEach((range) =&gt; {
+      paged.fetch({ index: range.index }).data.forEach((r) =&gt; out.push(toObject(r)));
+    });
+    return out;
+  }
+
+  return { getAll };
+});</code></pre>
+      </article>
+    </div>
+  </section>
+</main>
+
+<button class="to-top" id="toTop" aria-label="Back to top"><svg viewBox="0 0 24 24"><path d="M12 19V5m0 0l-6 6m6-6l6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+
+<footer>
+  <p>© <span id="year"></span> Priyesh Salian · Built with HTML, CSS &amp; JS</p>
+</footer>
+<script src="js/main.js"></script>
+<script src="js/snippets.js"></script>
+</body>
+</html>

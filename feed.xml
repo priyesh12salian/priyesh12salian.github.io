@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Priyesh Salian — Notes</title>
+    <link>https://priyesh12salian.github.io/notes.html</link>
+    <description>Short, practical write-ups on NetSuite, SuiteScript, integrations, and AI automation.</description>
+    <language>en</language>
+    <lastBuildDate>Tue, 17 Nov 2026 09:00:00 +0530</lastBuildDate>
+    <atom:link href="https://priyesh12salian.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Connecting AI agents to NetSuite with MCP</title>
+      <link>https://priyesh12salian.github.io/notes/ai-agents-netsuite-mcp.html</link>
+      <guid isPermaLink="true">https://priyesh12salian.github.io/notes/ai-agents-netsuite-mcp.html</guid>
+      <pubDate>Tue, 17 Nov 2026 09:00:00 +0530</pubDate>
+      <description>How an MCP server, a handful of narrow RESTlets, and a review dashboard let AI agents handle bank reconciliation and purchase approvals in NetSuite while people approve exceptions.</description>
+    </item>
+  </channel>
+</rss>

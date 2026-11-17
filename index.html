@@ -19,7 +19,10 @@
   <meta name="twitter:title" content="Priyesh Salian — NetSuite Techno-Functional Consultant">
   <meta name="twitter:description" content="8+ years of NetSuite implementation, SuiteScript, integrations, and AI agents.">
   <meta name="twitter:image" content="https://priyesh12salian.github.io/assets/images/og.png">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <link rel="alternate" type="application/rss+xml" title="Priyesh Salian — Notes" href="/feed.xml">
+  <script>(function(){try{var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
   <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
   <!-- Google Analytics 4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-YEP2NZD2GF"></script>
@@ -72,11 +75,19 @@
     <a href="#work">Case Studies</a>
     <a href="#projects">Projects</a>
     <a href="#services">Services</a>
+    <a href="#how">How I work</a>
     <a href="/notes.html">Notes</a>
+    <a href="/snippets.html">Snippets</a>
     <a href="#contact" class="nav-cta">Contact</a>
     <span class="nav-ink" id="navInk" aria-hidden="true"></span>
   </nav>
-  <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+  <div class="nav-right">
+    <button class="theme-btn" id="themeBtn" aria-label="Switch theme" title="Switch theme">
+      <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4l1.4 1.4M4.9 19.1l1.4-1.4m11.4-11.4l1.4-1.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+  </div>
   <span class="progress" id="progress" aria-hidden="true"></span>
 </header>
 
@@ -85,7 +96,7 @@
 
   <!-- ================= HERO ================= -->
   <section class="hero">
-    <p class="kicker reveal"><span class="dot"></span> Sr. Solution Strategist · Pune, India</p>
+    <p class="kicker reveal"><span class="dot"></span> Sr. Solution Strategist · Pune, India <span class="avail" id="avail">Open to new projects</span></p>
     <h1 class="reveal">Priyesh <span class="accent">Salian</span></h1>
     <p class="title-line reveal" id="typed" data-text="NetSuite Techno-Functional Consultant · 3× Oracle NetSuite Certified" aria-label="NetSuite Techno-Functional Consultant · 3× Oracle NetSuite Certified"><span class="typed-text" aria-hidden="true">NetSuite Techno-Functional Consultant · 3× Oracle NetSuite Certified</span><span class="caret" aria-hidden="true"></span></p>
     <p class="lead reveal">
@@ -383,6 +394,10 @@
       <span class="card-hint" aria-hidden="true">View details <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </article>
     </div>
+    <div class="gh-strip reveal" id="ghStrip" hidden>
+      <h3><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5A12 12 0 0 0 8.2 23.9c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5z"/></svg> Latest on GitHub</h3>
+      <div class="gh-grid" id="ghGrid"></div>
+    </div>
   </section>
 
   <!-- ================= SERVICES ================= -->
@@ -425,16 +440,54 @@
     </div>
   </section>
 
+  <!-- ================= HOW I WORK ================= -->
+  <section class="section" id="how">
+    <div class="section-head reveal">
+      <span class="num">07</span><h2>How I work</h2>
+    </div>
+    <div class="faq reveal">
+      <details>
+        <summary>How do you usually work with clients?</summary>
+        <p>Two ways. Fixed-scope projects for a clearly defined build such as an integration, a module rollout, or a set of scripts. Monthly retainers for ongoing support, enhancements, and advisory. Both are remote from Pune, India.</p>
+      </details>
+      <details>
+        <summary>Which time zones do you cover?</summary>
+        <p>I work in IST (UTC+5:30) with regular overlap for European hours and US mornings. For go-lives and cutovers I align to the client's hours.</p>
+      </details>
+      <details>
+        <summary>What does a typical project look like?</summary>
+        <p>A discovery call, then a written scope and estimate. I build in your sandbox with weekly demos, your team runs UAT, and I deploy through SDF so everything is versioned. A short hypercare period follows go-live.</p>
+      </details>
+      <details>
+        <summary>Do you work alongside in-house admins or a NetSuite partner?</summary>
+        <p>Yes, and often. I hand over documented, SDF-managed code and walk your team through it, so nothing depends on me staying involved.</p>
+      </details>
+      <details>
+        <summary>What do you need to get started?</summary>
+        <p>A short description of the problem, access to a sandbox account, and one person on your side who can make decisions.</p>
+      </details>
+      <details>
+        <summary>Do you take on AI work in NetSuite?</summary>
+        <p>Yes. Document-reading agents for invoices and purchase orders, and MCP-connected assistants that act inside NetSuite. I start every one read-only with a human approving exceptions, and widen its permissions only once the team trusts it.</p>
+      </details>
+    </div>
+  </section>
+
   <!-- ================= CONTACT ================= -->
   <section class="section contact" id="contact">
     <div class="contact-card reveal">
-      <span class="num">07</span>
+      <span class="num">08</span>
       <h2>Let's build something in NetSuite.</h2>
       <p>Open to consulting, collaborations, and side projects. The quickest way to reach me is LinkedIn.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="https://www.linkedin.com/in/priyesh-salian-03b0551b5" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
           LinkedIn
+        </a>
+        <!-- Replace href with the Calendly link when ready -->
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/priyesh-salian-03b0551b5" target="_blank" rel="noopener" data-book>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 10h18M8 3v4m8-4v4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          Book a call
         </a>
         <a class="btn btn-ghost" href="https://github.com/priyesh12salian" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5A12 12 0 0 0 8.2 23.9c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5z"/></svg>
@@ -458,6 +511,8 @@
     <div class="modal-body" id="modalBody"></div>
   </div>
 </div>
+
+<button class="to-top" id="toTop" aria-label="Back to top"><svg viewBox="0 0 24 24"><path d="M12 19V5m0 0l-6 6m6-6l6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 
 <footer>
   <p>© <span id="year"></span> Priyesh Salian · Built with HTML, CSS &amp; JS</p>

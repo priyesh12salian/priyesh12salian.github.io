@@ -166,3 +166,44 @@ document.querySelectorAll('a[href*="linkedin.com"]').forEach(a => a.addEventList
 document.querySelectorAll('a[href*="github.com"]').forEach(a => a.addEventListener('click', () => track('click_github', { location: a.closest('section')?.id || 'nav' })));
 document.querySelectorAll('.nav-links a, .hero-actions a').forEach(a => a.addEventListener('click', () => track('nav_click', { target: a.getAttribute('href') })));
 document.querySelectorAll('a[data-resume]').forEach(a => a.addEventListener('click', () => track('download_resume', { location: a.closest('section')?.id || 'page' })));
+
+// Theme toggle (initial theme is set by the inline script in <head>)
+const themeBtn = document.getElementById('themeBtn');
+if (themeBtn) {
+  themeBtn.addEventListener('click', () => {
+    const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    track('toggle_theme', { theme: next });
+  });
+}
+
+// Back to top
+const toTop = document.getElementById('toTop');
+if (toTop) {
+  window.addEventListener('scroll', () => toTop.classList.toggle('show', window.scrollY > 600), { passive: true });
+  toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' }));
+}
+
+// Latest public repos from GitHub (hidden if the request fails or nothing to show)
+const ghGrid = document.getElementById('ghGrid');
+if (ghGrid) {
+  fetch('https://api.github.com/users/priyesh12salian/repos?sort=pushed&per_page=12')
+    .then(r => r.ok ? r.json() : Promise.reject(r.status))
+    .then(repos => {
+      const own = repos.filter(r => !r.fork && !r.archived).slice(0, 6);
+      if (!own.length) return;
+      ghGrid.innerHTML = own.map(r => `
+        <a class="gh-card" href="${r.html_url}" target="_blank" rel="noopener">
+          <strong>${r.name}</strong>
+          <p>${r.description ? r.description.replace(/</g, '&lt;') : 'No description yet.'}</p>
+          <div class="gh-meta">${r.language ? `<span>${r.language}</span>` : ''}<em>★ ${r.stargazers_count}</em></div>
+        </a>`).join('');
+      const strip = document.getElementById('ghStrip');
+      strip.hidden = false;
+      strip.classList.add('visible');
+    })
+    .catch(() => {});
+}
+
+document.querySelectorAll('a[data-book]').forEach(a => a.addEventListener('click', () => track('book_call', { target: a.getAttribute('href') })));

@@ -14,7 +14,10 @@
   <meta property="og:image" content="https://priyesh12salian.github.io/assets/images/og.png">
   <meta property="article:published_time" content="2026-11-17">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <link rel="alternate" type="application/rss+xml" title="Priyesh Salian — Notes" href="/feed.xml">
+  <script>(function(){try{var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
   <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
   <!-- Google Analytics 4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-YEP2NZD2GF"></script>
@@ -54,10 +57,17 @@
     <a href="/#projects">Projects</a>
     <a href="/#services">Services</a>
     <a href="/notes.html" class="active">Notes</a>
+    <a href="/snippets.html">Snippets</a>
     <a href="/#contact" class="nav-cta">Contact</a>
     <span class="nav-ink" id="navInk" aria-hidden="true"></span>
   </nav>
-  <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+  <div class="nav-right">
+    <button class="theme-btn" id="themeBtn" aria-label="Switch theme" title="Switch theme">
+      <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4l1.4 1.4M4.9 19.1l1.4-1.4m11.4-11.4l1.4-1.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+  </div>
   <span class="progress" id="progress" aria-hidden="true"></span>
 </header>
 
@@ -102,6 +112,8 @@
     </div>
   </article>
 </main>
+
+<button class="to-top" id="toTop" aria-label="Back to top"><svg viewBox="0 0 24 24"><path d="M12 19V5m0 0l-6 6m6-6l6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 
 <footer>
   <p>© <span id="year"></span> Priyesh Salian · Built with HTML, CSS &amp; JS</p>
