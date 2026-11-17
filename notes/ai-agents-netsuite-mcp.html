@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connecting AI agents to NetSuite with MCP — Priyesh Salian</title>
+  <meta name="description" content="How an MCP server, narrow RESTlets, and a review dashboard let AI agents handle bank reconciliation and purchase approvals in NetSuite while people approve exceptions.">
+  <link rel="canonical" href="https://priyesh12salian.github.io/notes/ai-agents-netsuite-mcp.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Priyesh Salian">
+  <meta property="og:title" content="Connecting AI agents to NetSuite with MCP">
+  <meta property="og:description" content="MCP server, narrow RESTlets, and a review dashboard: how AI agents take on routine NetSuite work with people approving exceptions.">
+  <meta property="og:url" content="https://priyesh12salian.github.io/notes/ai-agents-netsuite-mcp.html">
+  <meta property="og:image" content="https://priyesh12salian.github.io/assets/images/og.png">
+  <meta property="article:published_time" content="2026-11-17">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YEP2NZD2GF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-YEP2NZD2GF');
+  </script>
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Connecting AI agents to NetSuite with MCP",
+    "datePublished": "2026-11-17",
+    "author": { "@type": "Person", "name": "Priyesh Salian", "url": "https://priyesh12salian.github.io/" },
+    "mainEntityOfPage": "https://priyesh12salian.github.io/notes/ai-agents-netsuite-mcp.html",
+    "image": "https://priyesh12salian.github.io/assets/images/og.png"
+  }
+  </script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="cs-ah"/></marker></defs></svg>
+<header class="nav scrolled" id="nav">
+  <a class="logo" href="/">PS<span>.</span></a>
+  <nav class="nav-links" id="navLinks">
+    <a href="/#about">About</a>
+    <a href="/#experience">Experience</a>
+    <a href="/#skills">Skills</a>
+    <a href="/#work">Case Studies</a>
+    <a href="/#projects">Projects</a>
+    <a href="/#services">Services</a>
+    <a href="/notes.html" class="active">Notes</a>
+    <a href="/#contact" class="nav-cta">Contact</a>
+    <span class="nav-ink" id="navInk" aria-hidden="true"></span>
+  </nav>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+  <span class="progress" id="progress" aria-hidden="true"></span>
+</header>
+
+<main id="main" class="page">
+  <article class="article section">
+    <p class="crumbs"><a href="/notes.html">Notes</a> <span>/</span> AI agents and MCP</p>
+    <p class="note-meta"><time datetime="2026-11-17">17 Nov 2026</time> · 5 min read</p>
+    <h1>Connecting AI agents to NetSuite with MCP</h1>
+    <p class="standfirst">Finance and purchasing teams lose hours every week to checks that are repetitive but not quite mechanical. This is how I put an AI agent in front of two of them, and what I would do the same way again.</p>
+
+    <h2>The work worth handing over</h2>
+    <p>Two tasks came up in almost every conversation with the finance team. The first was bank reconciliation: matching imported bank lines to NetSuite transactions, where most lines match on amount and date but a meaningful share need a second look. The second was purchase approvals: checking a purchase order against budget, vendor status, and item setup before an approver even sees it.</p>
+    <p>Both tasks share a shape. Most cases are obvious, a few are not, and a person has to look at every one of them to find out which is which. That shape is exactly where an agent earns its keep: it can do the obvious ones end to end and bring only the exceptions to a human.</p>
+
+    <h2>The architecture</h2>
+    <figure class="case-fig"><svg viewBox="0 0 460 250" role="img" aria-label="Architecture: business user to AI agent with MCP server to NetSuite RESTlets, with a React dashboard"><rect class="cs-box" x="10" y="70" width="100" height="60" rx="8"/><text class="cs-t" x="60.0" y="96.0">Business user</text><text class="cs-s" x="60.0" y="112.0">chat / request</text><path class="cs-arrow" marker-end="url(#ah)" d="M110 100 L160 100"/><rect class="cs-box cs-box-accent" x="160" y="55" width="130" height="90" rx="8"/><text class="cs-t" x="225.0" y="96.0">AI agent</text><text class="cs-s" x="225.0" y="112.0">Claude + MCP server</text><path class="cs-arrow" marker-end="url(#ah)" d="M290 100 L340 100"/><rect class="cs-box" x="340" y="70" width="110" height="60" rx="8"/><text class="cs-t" x="395.0" y="96.0">NetSuite</text><text class="cs-s" x="395.0" y="112.0">RESTlets</text><path class="cs-arrow" marker-end="url(#ah)" d="M225 145 L225 180"/><rect class="cs-box" x="150" y="180" width="150" height="50" rx="8"/><text class="cs-t" x="225.0" y="201.0">React dashboard</text><text class="cs-s" x="225.0" y="217.0">actions &amp; progress</text></svg></figure>
+    <p>The Model Context Protocol, or MCP, is an open standard that lets a language model call tools exposed by a server. I wrote a small MCP server whose tools map one to one onto RESTlets in NetSuite. Claude runs the reasoning, the MCP server is the only path to the ERP, and a React dashboard shows what each agent did and where every workflow stands.</p>
+    <p>Keeping NetSuite behind RESTlets instead of giving the model a general API matters. Each RESTlet does one narrow thing, such as "find transactions matching this amount and date range" or "return the budget line for this department and period". The model cannot run arbitrary searches or updates. It can only ask the questions I wrote endpoints for.</p>
+
+    <h2>What the agent is allowed to do</h2>
+    <ul>
+      <li><strong>Read freely.</strong> Search transactions, read a vendor record, pull a budget line. These calls are safe and cheap.</li>
+      <li><strong>Propose, not commit.</strong> For a bank line, the agent returns its best match and a confidence score. For a purchase order, it returns a recommendation and the reasons behind it.</li>
+      <li><strong>Write only behind a gate.</strong> Matches above a confidence threshold and purchase orders that pass every check go through automatically. Everything else lands in a review queue on the dashboard with the agent's reasoning attached.</li>
+    </ul>
+    <p>The gate is the whole design. The agent is good at the first pass. The person is good at the judgement call. Neither does the other's job.</p>
+
+    <h2>Lessons that stuck</h2>
+    <p><strong>Narrow tools beat clever prompts.</strong> Early on I tried one flexible search tool and a long prompt explaining how to use it. The model found creative ways to misuse it. Replacing it with six boring, specific tools removed most of the bad behaviour without touching the prompt.</p>
+    <p><strong>Return structured data, not prose.</strong> RESTlets should return JSON with fixed fields. When a tool returned a human-readable summary, the model sometimes reasoned about the summary instead of the data.</p>
+    <p><strong>Log every action, in NetSuite.</strong> Each agent decision is written to a custom record with the inputs, the output, and the confidence. That record is what the dashboard reads, and it is what an auditor would ask for.</p>
+    <p><strong>Respect governance.</strong> RESTlets have usage limits. The agent batches its reads and never loops over records one at a time. A tool that can time out is a tool the model will eventually call in a loop.</p>
+    <p><strong>Start with reads.</strong> The first version wrote nothing. It only proposed matches and people accepted or rejected them on the dashboard. That gave the team a few weeks to see the agent's judgement before it was allowed to act on its own.</p>
+
+    <h2>Where to start</h2>
+    <p>Pick one task where most cases are obvious and a person still reviews all of them. Write two or three RESTlets that answer the questions a reviewer would ask. Put a model in front of them in read-only mode and show the proposals in a list. If the proposals are right often enough that the reviewers start trusting them, add the gate and let the easy ones through.</p>
+    <p>That is the entire method. The tooling changes every few months. The shape of the problem does not.</p>
+
+    <div class="article-foot">
+      <a href="/notes.html" class="btn btn-ghost">← All notes</a>
+      <a href="/#contact" class="btn btn-primary">Talk about a project</a>
+    </div>
+  </article>
+</main>
+
+<footer>
+  <p>© <span id="year"></span> Priyesh Salian · Built with HTML, CSS &amp; JS</p>
+</footer>
+<script src="../js/main.js"></script>
+</body>
+</html>

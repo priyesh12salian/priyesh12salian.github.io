@@ -1,5 +1,6 @@
 // Footer year
-document.getElementById('year').textContent = new Date().getFullYear();
+const yearEl = document.getElementById('year');
+if (yearEl) yearEl.textContent = new Date().getFullYear();
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const finePointer = window.matchMedia('(pointer: fine)').matches;
 
@@ -12,7 +13,7 @@ const progress = document.getElementById('progress');
 const onScroll = () => {
   nav.classList.toggle('scrolled', window.scrollY > 24);
   const max = document.documentElement.scrollHeight - window.innerHeight;
-  progress.style.transform = `scaleX(${max > 0 ? Math.min(1, window.scrollY / max) : 0})`;
+  if (progress) progress.style.transform = `scaleX(${max > 0 ? Math.min(1, window.scrollY / max) : 0})`;
 };
 window.addEventListener('scroll', onScroll, { passive: true });
 onScroll();
@@ -114,15 +115,17 @@ if (finePointer && !reducedMotion) {
   });
 }
 
+const track = (name, params) => { if (typeof gtag === 'function') gtag('event', name, params); };
+
 // Popup (modal) for compact cards
 const modal = document.getElementById('modal');
+if (modal) {
 const modalKind = document.getElementById('modalKind');
 const modalTitle = document.getElementById('modalTitle');
 const modalSub = document.getElementById('modalSub');
 const modalBody = document.getElementById('modalBody');
 let lastFocus = null;
 
-const track = (name, params) => { if (typeof gtag === 'function') gtag('event', name, params); };
 
 function openModal(card) {
   const title = card.querySelector('h3')?.textContent.trim() || '';
@@ -156,8 +159,10 @@ document.querySelectorAll('.clickable').forEach(card => {
 });
 modal.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', closeModal));
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
+}
 
 // GA4 click events
 document.querySelectorAll('a[href*="linkedin.com"]').forEach(a => a.addEventListener('click', () => track('click_linkedin', { location: a.closest('section')?.id || 'nav' })));
 document.querySelectorAll('a[href*="github.com"]').forEach(a => a.addEventListener('click', () => track('click_github', { location: a.closest('section')?.id || 'nav' })));
 document.querySelectorAll('.nav-links a, .hero-actions a').forEach(a => a.addEventListener('click', () => track('nav_click', { target: a.getAttribute('href') })));
+document.querySelectorAll('a[data-resume]').forEach(a => a.addEventListener('click', () => track('download_resume', { location: a.closest('section')?.id || 'page' })));
