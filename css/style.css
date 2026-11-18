@@ -492,22 +492,6 @@ html { color-scheme: light dark; }
 .case-link:hover .card-hint { opacity: 1; }
 .case-link:hover .card-hint svg { transform: translateX(3px); }
 
-/* ---------- Skill filter ---------- */
-.chips li[data-skill] { cursor: pointer; }
-.hint-click { font-weight: 400; text-transform: none; letter-spacing: 0; font-size: .74rem; color: var(--muted); margin-left: 8px; opacity: .8; }
-.filter-bar { position: fixed; top: 82px; left: 50%; transform: translateX(-50%); z-index: 46; display: flex; align-items: center; gap: 8px; padding: 8px 10px 8px 16px; border-radius: 999px; background: var(--fg); color: var(--bg); font-size: .85rem; box-shadow: var(--shadow-lg); animation: pop .3s cubic-bezier(.2,.8,.2,1); max-width: calc(100vw - 32px); }
-.filter-bar strong { color: var(--accent); white-space: nowrap; }
-:root[data-theme="dark"] .filter-bar strong { color: #0b1220; }
-:root[data-theme="dark"] .filter-bar { background: var(--accent); color: #0b1220; }
-.filter-bar em { font-style: normal; opacity: .75; white-space: nowrap; }
-.filter-bar button { width: 28px; height: 28px; border-radius: 50%; border: 0; background: rgba(255,255,255,.15); color: inherit; cursor: pointer; font-size: .8rem; }
-:root[data-theme="dark"] .filter-bar button { background: rgba(0,0,0,.15); }
-.filter-bar button:hover { background: rgba(255,255,255,.3); }
-[data-skills] { transition: opacity .35s, filter .35s, box-shadow .35s, border-color .35s, transform .25s; }
-body.filtering [data-skills].dim { opacity: .28; filter: saturate(.3); }
-body.filtering [data-skills].lit { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft), var(--shadow-md); }
-@media (max-width: 860px) { .filter-bar { top: auto; bottom: 80px; font-size: .8rem; } }
-
 /* ---------- Case study pages: scroll story ---------- */
 .casepage { max-width: 1040px; }
 .casepage h1 { font-size: clamp(2rem, 4.5vw, 2.9rem); font-weight: 800; margin: 6px 0 16px; }
