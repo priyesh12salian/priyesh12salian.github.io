@@ -106,36 +106,6 @@
       </div>
     </div>
 
-    <section class="demo" id="demo">
-      <div class="demo-head">
-        <p class="case-num">Try it</p>
-        <h2>A simulated reconciliation agent</h2>
-        <p>Eight bank lines, ten NetSuite transactions, the same rules the real agent uses. Press <strong>Run agent</strong> and watch it match, then decide the ones it left for you. Everything runs in your browser on sample data.</p>
-        <div class="demo-controls">
-          <button class="btn btn-primary" id="demoRun" type="button">Run agent</button>
-          <button class="btn btn-ghost" id="demoReset" type="button" disabled>Reset</button>
-        </div>
-      </div>
-      <div class="demo-grid">
-        <div class="demo-col">
-          <h3>Bank statement</h3>
-          <ol class="bank-lines" id="bankLines"></ol>
-        </div>
-        <div class="demo-col">
-          <h3>Agent log</h3>
-          <div class="agent-log" id="agentLog"><p class="log-idle">Waiting. The agent has read access to transactions and can propose matches; it cannot post anything without the gate below.</p></div>
-          <div class="demo-summary" id="demoSummary" hidden>
-            <div><strong id="sumAuto">0</strong><span>auto-matched</span></div>
-            <div><strong id="sumReview">0</strong><span>for review</span></div>
-            <div><strong id="sumExc">0</strong><span>exceptions</span></div>
-          </div>
-        </div>
-      </div>
-      <details class="demo-data">
-        <summary>NetSuite transactions the agent can see</summary>
-        <table id="nsTable"><thead><tr><th>Ref</th><th>Type</th><th>Date</th><th>Amount</th><th>Entity</th></tr></thead><tbody></tbody></table>
-      </details>
-    </section>
 
     <div class="article-foot">
       <a href="/#work" class="btn btn-ghost">← All case studies</a>
@@ -152,6 +122,5 @@
 </footer>
 <script src="../js/main.js"></script>
 <script src="../js/story.js"></script>
-<script src="../js/demo.js"></script>
 </body>
 </html>
