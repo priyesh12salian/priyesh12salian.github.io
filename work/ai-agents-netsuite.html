@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI agents inside NetSuite — Case study — Priyesh Salian</title>
+  <meta name="description" content="MCP-connected assistants that reconcile bank lines and route purchase approvals, with a live React dashboard.">
+  <link rel="canonical" href="https://priyesh12salian.github.io/work/ai-agents-netsuite.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Priyesh Salian">
+  <meta property="og:title" content="AI agents inside NetSuite — case study">
+  <meta property="og:description" content="MCP-connected assistants that reconcile bank lines and route purchase approvals, with a live React dashboard.">
+  <meta property="og:url" content="https://priyesh12salian.github.io/work/ai-agents-netsuite.html">
+  <meta property="og:image" content="https://priyesh12salian.github.io/assets/images/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <link rel="alternate" type="application/rss+xml" title="Priyesh Salian — Notes" href="/feed.xml">
+  <script>(function(){try{var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
+  <!-- Google Analytics 4 -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-YEP2NZD2GF');
+    // Load the Analytics library after the page has painted so it never delays rendering
+    window.addEventListener('load', function () {
+      var s = document.createElement('script'); s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YEP2NZD2GF'; document.head.appendChild(s);
+    });
+  </script>
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="cs-ah"/></marker></defs></svg>
+<header class="nav scrolled" id="nav">
+  <a class="logo" href="/">PS<span>.</span></a>
+  <nav class="nav-links" id="navLinks">
+    <a href="/#about">About</a>
+    <a href="/#experience">Experience</a>
+    <a href="/#skills">Skills</a>
+    <a href="/#work" class="active">Case Studies</a>
+    <a href="/#projects">Projects</a>
+    <a href="/#services">Services</a>
+    <a href="/notes.html">Notes</a>
+    <a href="/snippets.html">Snippets</a>
+    <a href="/#contact" class="nav-cta">Contact</a>
+    <span class="nav-ink" id="navInk" aria-hidden="true"></span>
+  </nav>
+  <div class="nav-right">
+    <button class="theme-btn" id="themeBtn" aria-label="Switch theme" title="Switch theme">
+      <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4l1.4 1.4M4.9 19.1l1.4-1.4m11.4-11.4l1.4-1.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+  </div>
+  <span class="progress" id="progress" aria-hidden="true"></span>
+</header>
+
+<main id="main" class="page">
+  <article class="section casepage">
+    <p class="crumbs"><a href="/#work">Case studies</a> <span>/</span> 1 of 4</p>
+    <p class="case-num">Case study 1</p>
+    <h1>AI agents inside NetSuite</h1>
+    <p class="standfirst">MCP-connected assistants that reconcile bank lines and route purchase approvals, with a live React dashboard.</p>
+    <ul class="tags"><li>NetSuite MCP</li><li>RESTlet</li><li>Prompt Engineering</li><li>React</li></ul>
+
+    <div class="story" id="story">
+      <figure class="story-fig" data-active="1">
+        <svg viewBox="0 0 460 250" role="img" aria-label="AI agents inside NetSuite architecture, highlighted step by step"><g class="st" data-step="1"><rect class="cs-box" x="10" y="70" width="100" height="60" rx="8"/><text class="cs-t" x="60.0" y="100.0">Business user</text><text class="cs-s" x="60.0" y="116.0">chat / request</text></g><path class="cs-arrow st" data-step="2" marker-end="url(#ah)" d="M110 100 L160 100"/><g class="st" data-step="2"><rect class="cs-box cs-box-accent" x="160" y="55" width="130" height="90" rx="8"/><text class="cs-t" x="225.0" y="100.0">AI agent</text><text class="cs-s" x="225.0" y="116.0">Claude + MCP server</text></g><path class="cs-arrow st" data-step="3" marker-end="url(#ah)" d="M290 100 L340 100"/><g class="st" data-step="3"><rect class="cs-box" x="340" y="70" width="110" height="60" rx="8"/><text class="cs-t" x="395.0" y="100.0">NetSuite</text><text class="cs-s" x="395.0" y="116.0">RESTlets</text></g><path class="cs-arrow st" data-step="4" marker-end="url(#ah)" d="M225 145 L225 180"/><g class="st" data-step="4"><rect class="cs-box" x="150" y="180" width="150" height="50" rx="8"/><text class="cs-t" x="225.0" y="205.0">React dashboard</text><text class="cs-s" x="225.0" y="221.0">actions &amp; progress</text></g></svg>
+        <figcaption><span id="stepLabel">Scroll to walk through the build</span></figcaption>
+      </figure>
+      <div class="steps">
+        <div class="step" data-step="1">
+          <p class="step-num">Problem</p>
+          <h2>The problem</h2>
+          <p>Finance and purchasing teams spent hours every week on checks that were repetitive but not mechanical: matching bank lines to transactions, validating purchase orders against budget and vendor setup, and chasing approvals. Most cases were obvious. A person still had to look at all of them to find the few that were not.</p>
+        </div>
+        <div class="step" data-step="2">
+          <p class="step-num">Step 1</p>
+          <h2>An agent with one door into NetSuite</h2>
+          <p>I built a small MCP server whose tools map one to one onto NetSuite RESTlets. Claude does the reasoning and can only reach the ERP through those tools. There is no general API access, so the model can only ask the questions I wrote endpoints for.</p>
+        </div>
+        <div class="step" data-step="3">
+          <p class="step-num">Step 2</p>
+          <h2>Narrow RESTlets, structured answers</h2>
+          <p>Each RESTlet does one thing, such as finding transactions in an amount and date window or returning a budget line. They return JSON with fixed fields, never prose, so the agent reasons about data rather than summaries. Reads are free; writes sit behind a confidence gate.</p>
+        </div>
+        <div class="step" data-step="4">
+          <p class="step-num">Step 3</p>
+          <h2>A dashboard people actually use</h2>
+          <p>A React dashboard shows what every agent did, with the inputs, the reasoning and the confidence. High-confidence matches and clean purchase orders go through on their own. Everything else lands in a review queue where a person approves or rejects in one click.</p>
+        </div>
+        <div class="step" data-step="5">
+          <p class="step-num">Result</p>
+          <h2>The result</h2>
+          <p>Routine validation, record creation and follow-up communication now run through the agents. People handle exceptions instead of every step, and every decision is logged to a custom record in NetSuite for audit. The first version was read-only for a few weeks so the team could judge the agent before it was allowed to act.</p>
+        </div>
+      </div>
+    </div>
+
+    <section class="demo" id="demo">
+      <div class="demo-head">
+        <p class="case-num">Try it</p>
+        <h2>A simulated reconciliation agent</h2>
+        <p>Eight bank lines, ten NetSuite transactions, the same rules the real agent uses. Press <strong>Run agent</strong> and watch it match, then decide the ones it left for you. Everything runs in your browser on sample data.</p>
+        <div class="demo-controls">
+          <button class="btn btn-primary" id="demoRun" type="button">Run agent</button>
+          <button class="btn btn-ghost" id="demoReset" type="button" disabled>Reset</button>
+        </div>
+      </div>
+      <div class="demo-grid">
+        <div class="demo-col">
+          <h3>Bank statement</h3>
+          <ol class="bank-lines" id="bankLines"></ol>
+        </div>
+        <div class="demo-col">
+          <h3>Agent log</h3>
+          <div class="agent-log" id="agentLog"><p class="log-idle">Waiting. The agent has read access to transactions and can propose matches; it cannot post anything without the gate below.</p></div>
+          <div class="demo-summary" id="demoSummary" hidden>
+            <div><strong id="sumAuto">0</strong><span>auto-matched</span></div>
+            <div><strong id="sumReview">0</strong><span>for review</span></div>
+            <div><strong id="sumExc">0</strong><span>exceptions</span></div>
+          </div>
+        </div>
+      </div>
+      <details class="demo-data">
+        <summary>NetSuite transactions the agent can see</summary>
+        <table id="nsTable"><thead><tr><th>Ref</th><th>Type</th><th>Date</th><th>Amount</th><th>Entity</th></tr></thead><tbody></tbody></table>
+      </details>
+    </section>
+
+    <div class="article-foot">
+      <a href="/#work" class="btn btn-ghost">← All case studies</a>
+      <a href="manufacturing-module.html" class="btn btn-ghost">Next: Manufacturing module implementation →</a>
+      <a href="/#contact" class="btn btn-primary">Talk about a project</a>
+    </div>
+  </article>
+</main>
+
+<button class="to-top" id="toTop" aria-label="Back to top"><svg viewBox="0 0 24 24"><path d="M12 19V5m0 0l-6 6m6-6l6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+
+<footer>
+  <p>© <span id="year"></span> Priyesh Salian · Built with HTML, CSS &amp; JS</p>
+</footer>
+<script src="../js/main.js"></script>
+<script src="../js/story.js"></script>
+<script src="../js/demo.js"></script>
+</body>
+</html>

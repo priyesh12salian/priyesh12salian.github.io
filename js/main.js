@@ -207,3 +207,33 @@ if (ghGrid) {
 }
 
 document.querySelectorAll('a[data-book]').forEach(a => a.addEventListener('click', () => track('book_call', { target: a.getAttribute('href') })));
+
+// Click a skill chip to highlight the roles, case studies and projects that used it
+const filterBar = document.getElementById('filterBar');
+if (filterBar) {
+  const nameEl = document.getElementById('filterName'), countEl = document.getElementById('filterCount');
+  const cards = document.querySelectorAll('[data-skills]');
+  const clear = () => { cards.forEach(c => c.classList.remove('dim', 'lit')); filterBar.hidden = true; document.body.classList.remove('filtering'); };
+  const apply = (skill, label) => {
+    let first = null, n = 0;
+    cards.forEach(c => {
+      const hit = c.dataset.skills.split('|').includes(skill);
+      c.classList.toggle('dim', !hit); c.classList.toggle('lit', hit);
+      if (hit) { n++; first = first || c; }
+    });
+    nameEl.textContent = label; countEl.textContent = n ? `· ${n} item${n > 1 ? 's' : ''}` : '· nothing tagged yet';
+    filterBar.hidden = false; document.body.classList.add('filtering');
+    if (typeof closeModal === 'function' && modal && modal.classList.contains('open')) closeModal();
+    if (first) setTimeout(() => first.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'center' }), 60);
+    track('filter_skill', { skill: label, matches: n });
+  };
+  document.addEventListener('click', (e) => {
+    const chip = e.target.closest('.chips li[data-skill]');
+    if (chip) apply(chip.dataset.skill, chip.textContent.trim());
+  });
+  document.addEventListener('keydown', (e) => {
+    const chip = e.target.closest && e.target.closest('.chips li[data-skill]');
+    if (chip && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); apply(chip.dataset.skill, chip.textContent.trim()); }
+  });
+  document.getElementById('filterClear').addEventListener('click', clear);
+}

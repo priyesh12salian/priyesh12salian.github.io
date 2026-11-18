@@ -97,6 +97,7 @@
 </header>
 
 <div class="bg-glow" aria-hidden="true"></div>
+<div class="filter-bar" id="filterBar" hidden><span>Showing work with</span> <strong id="filterName"></strong> <em id="filterCount"></em> <button type="button" id="filterClear" aria-label="Clear filter">✕</button></div>
 <main id="top">
 
   <!-- ================= HERO ================= -->
@@ -147,11 +148,11 @@
         </p>
       </div>
       <aside class="about-side reveal">
-        <h3>Business processes</h3>
+        <h3>Business processes <span class="hint-click">click one to see related work</span></h3>
         <ul class="chips">
-          <li>Order to Cash</li><li>Procure to Pay</li><li>Inventory</li>
-          <li>Manufacturing</li><li>WMS</li><li>Intercompany / OneWorld</li>
-          <li>Project Management</li><li>Support Cases</li><li>Payment Requests</li>
+          <li data-skill="order to cash" tabindex="0" role="button">Order to Cash</li><li data-skill="procure to pay" tabindex="0" role="button">Procure to Pay</li><li data-skill="inventory" tabindex="0" role="button">Inventory</li>
+          <li data-skill="manufacturing" tabindex="0" role="button">Manufacturing</li><li data-skill="wms" tabindex="0" role="button">WMS</li><li data-skill="intercompany / oneworld" tabindex="0" role="button">Intercompany / OneWorld</li>
+          <li data-skill="project management" tabindex="0" role="button">Project Management</li><li data-skill="support cases" tabindex="0" role="button">Support Cases</li><li data-skill="payment requests" tabindex="0" role="button">Payment Requests</li>
         </ul>
       </aside>
     </div>
@@ -165,7 +166,7 @@
     <ol class="timeline">
       <li class="reveal">
         <span class="tl-dot"></span>
-        <div class="tl-card clickable" tabindex="0" role="button" data-kind="Experience">
+        <div class="tl-card clickable" tabindex="0" role="button" data-kind="Experience" data-skills="netsuite mcp server|claude skills|openai api|ai document extraction|prompt engineering|react|power bi (odbc)|javascript|sql|suitelets &amp; restlets|suitescript 1.0 / 2.0 / 2.1|procure to pay|order to cash|payment requests">
           <p class="tl-date">Jan 2025 — Present</p>
           <h3>Sr. Solution Strategist</h3>
           <p class="tl-org">SankalvaX · Pune, India</p>
@@ -178,7 +179,7 @@
       </li>
       <li class="reveal">
         <span class="tl-dot"></span>
-        <div class="tl-card clickable" tabindex="0" role="button" data-kind="Experience">
+        <div class="tl-card clickable" tabindex="0" role="button" data-kind="Experience" data-skills="suitescript 1.0 / 2.0 / 2.1|suiteflow|suitebuilder|suiteanalytics|suiteql|saved search|datasets &amp; workbooks|manufacturing|wms|inventory|intercompany / oneworld|edi|shopify|salesforce|sap ariba (cxml)|boomi|rest web services|oauth 1.0 / 2.0 &amp; tba|advanced pdf / freemarker|custom records &amp; forms|javascript|procure to pay|order to cash|project management">
           <p class="tl-date">May 2022 — Jan 2025</p>
           <h3>Lead NetSuite Techno Functional Consultant</h3>
           <p class="tl-org">Wesco · Pune, India</p>
@@ -191,7 +192,7 @@
       </li>
       <li class="reveal">
         <span class="tl-dot"></span>
-        <div class="tl-card clickable" tabindex="0" role="button" data-kind="Experience">
+        <div class="tl-card clickable" tabindex="0" role="button" data-kind="Experience" data-skills="suitelets &amp; restlets|map/reduce &amp; scheduled|custom records &amp; forms|roles &amp; dashboards|suitescript 1.0 / 2.0 / 2.1|inventory|javascript|suiteflow">
           <p class="tl-date">Feb 2021 — May 2022</p>
           <h3>Application Developer</h3>
           <p class="tl-org">KPI · Mangaluru, India</p>
@@ -203,7 +204,7 @@
       </li>
       <li class="reveal">
         <span class="tl-dot"></span>
-        <div class="tl-card clickable" tabindex="0" role="button" data-kind="Experience">
+        <div class="tl-card clickable" tabindex="0" role="button" data-kind="Experience" data-skills="suitebuilder|suiteflow|saved search|csv import &amp; mass update|order to cash|procure to pay|roles &amp; dashboards|support cases|suitebundler">
           <p class="tl-date">Mar 2018 — Feb 2021</p>
           <h3>NetSuite Technical Consultant</h3>
           <p class="tl-org">Freelance · Karnataka, India</p>
@@ -233,24 +234,24 @@
       <div class="skill-card reveal clickable" tabindex="0" role="button" data-kind="Skills">
         <h3>NetSuite platform</h3>
         <p class="card-sub">13 skills</p><div class="details"><ul class="chips">
-          <li>SuiteScript 1.0 / 2.0 / 2.1</li><li>SuiteBuilder</li><li>SuiteFlow</li>
-          <li>SuiteAnalytics</li><li>SuiteBundler</li><li>SuiteQL</li><li>Saved Search</li>
-          <li>Datasets &amp; Workbooks</li><li>Suitelets &amp; RESTlets</li><li>Map/Reduce &amp; Scheduled</li><li>Advanced PDF / FreeMarker</li>
-          <li>Custom Records &amp; Forms</li><li>Roles &amp; Dashboards</li>
+          <li data-skill="suitescript 1.0 / 2.0 / 2.1" tabindex="0" role="button">SuiteScript 1.0 / 2.0 / 2.1</li><li data-skill="suitebuilder" tabindex="0" role="button">SuiteBuilder</li><li data-skill="suiteflow" tabindex="0" role="button">SuiteFlow</li>
+          <li data-skill="suiteanalytics" tabindex="0" role="button">SuiteAnalytics</li><li data-skill="suitebundler" tabindex="0" role="button">SuiteBundler</li><li data-skill="suiteql" tabindex="0" role="button">SuiteQL</li><li data-skill="saved search" tabindex="0" role="button">Saved Search</li>
+          <li data-skill="datasets &amp; workbooks" tabindex="0" role="button">Datasets &amp; Workbooks</li><li data-skill="suitelets &amp; restlets" tabindex="0" role="button">Suitelets &amp; RESTlets</li><li data-skill="map/reduce &amp; scheduled" tabindex="0" role="button">Map/Reduce &amp; Scheduled</li><li data-skill="advanced pdf / freemarker" tabindex="0" role="button">Advanced PDF / FreeMarker</li>
+          <li data-skill="custom records &amp; forms" tabindex="0" role="button">Custom Records &amp; Forms</li><li data-skill="roles &amp; dashboards" tabindex="0" role="button">Roles &amp; Dashboards</li>
         </ul></div><span class="card-hint" aria-hidden="true">View details <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </div>
       <div class="skill-card reveal clickable" tabindex="0" role="button" data-kind="Skills">
         <h3>Integrations</h3>
         <p class="card-sub">10 skills</p><div class="details"><ul class="chips">
-          <li>REST Web Services</li><li>OAuth 1.0 / 2.0 &amp; TBA</li><li>EDI</li><li>Shopify</li><li>SAP Ariba (cXML)</li><li>Boomi</li>
-          <li>Salesforce</li><li>Monday.com</li><li>SFTP</li><li>CSV Import &amp; Mass Update</li>
+          <li data-skill="rest web services" tabindex="0" role="button">REST Web Services</li><li data-skill="oauth 1.0 / 2.0 &amp; tba" tabindex="0" role="button">OAuth 1.0 / 2.0 &amp; TBA</li><li data-skill="edi" tabindex="0" role="button">EDI</li><li data-skill="shopify" tabindex="0" role="button">Shopify</li><li data-skill="sap ariba (cxml)" tabindex="0" role="button">SAP Ariba (cXML)</li><li data-skill="boomi" tabindex="0" role="button">Boomi</li>
+          <li data-skill="salesforce" tabindex="0" role="button">Salesforce</li><li data-skill="monday.com" tabindex="0" role="button">Monday.com</li><li data-skill="sftp" tabindex="0" role="button">SFTP</li><li data-skill="csv import &amp; mass update" tabindex="0" role="button">CSV Import &amp; Mass Update</li>
         </ul></div><span class="card-hint" aria-hidden="true">View details <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </div>
       <div class="skill-card reveal clickable" tabindex="0" role="button" data-kind="Skills">
         <h3>AI &amp; tooling</h3>
         <p class="card-sub">9 skills</p><div class="details"><ul class="chips">
-          <li>NetSuite MCP Server</li><li>Claude Skills</li><li>OpenAI API</li>
-          <li>AI document extraction</li><li>Prompt Engineering</li><li>React</li><li>Power BI (ODBC)</li><li>JavaScript</li><li>SQL</li>
+          <li data-skill="netsuite mcp server" tabindex="0" role="button">NetSuite MCP Server</li><li data-skill="claude skills" tabindex="0" role="button">Claude Skills</li><li data-skill="openai api" tabindex="0" role="button">OpenAI API</li>
+          <li data-skill="ai document extraction" tabindex="0" role="button">AI document extraction</li><li data-skill="prompt engineering" tabindex="0" role="button">Prompt Engineering</li><li data-skill="react" tabindex="0" role="button">React</li><li data-skill="power bi (odbc)" tabindex="0" role="button">Power BI (ODBC)</li><li data-skill="javascript" tabindex="0" role="button">JavaScript</li><li data-skill="sql" tabindex="0" role="button">SQL</li>
         </ul></div><span class="card-hint" aria-hidden="true">View details <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </div>
       <div class="skill-card certs reveal clickable" tabindex="0" role="button" data-kind="Certifications">
@@ -270,62 +271,42 @@
       <span class="num">04</span><h2>Case Studies</h2>
     </div>
     <div class="case-list">
-      <div class="case reveal clickable" tabindex="0" role="button" data-kind="Case study 1">
+      <a class="case case-link reveal" href="work/ai-agents-netsuite.html" data-skills="netsuite mcp server|claude skills|prompt engineering|react|suitelets &amp; restlets|javascript|procure to pay|payment requests">
         <div class="case-body">
           <p class="case-num">Case study 1</p>
           <h3>AI agents inside NetSuite</h3>
           <p class="teaser">MCP-connected assistants that reconcile bank lines and route purchase approvals, with a live React dashboard.</p>
           <ul class="tags"><li>NetSuite MCP</li><li>RESTlet</li><li>Prompt Engineering</li><li>React</li></ul>
-          <span class="card-hint" aria-hidden="true">View details <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="card-hint" aria-hidden="true">Read case study <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </div>
-        <div class="details"><figure class="case-fig"><svg viewBox="0 0 460 250" role="img" aria-label="AI agents inside NetSuite architecture"><rect class="cs-box" x="10" y="70" width="100" height="60" rx="8"/><text class="cs-t" x="60.0" y="96.0">Business user</text><text class="cs-s" x="60.0" y="112.0">chat / request</text><path class="cs-arrow" marker-end="url(#ah)" d="M110 100 L160 100"/><rect class="cs-box cs-box-accent" x="160" y="55" width="130" height="90" rx="8"/><text class="cs-t" x="225.0" y="96.0">AI agent</text><text class="cs-s" x="225.0" y="112.0">Claude + MCP server</text><path class="cs-arrow" marker-end="url(#ah)" d="M290 100 L340 100"/><rect class="cs-box" x="340" y="70" width="110" height="60" rx="8"/><text class="cs-t" x="395.0" y="96.0">NetSuite</text><text class="cs-s" x="395.0" y="112.0">RESTlets</text><path class="cs-arrow" marker-end="url(#ah)" d="M225 145 L225 180"/><rect class="cs-box" x="150" y="180" width="150" height="50" rx="8"/><text class="cs-t" x="225.0" y="201.0">React dashboard</text><text class="cs-s" x="225.0" y="217.0">actions &amp; progress</text></svg></figure><dl>
-            <dt>Problem</dt><dd>Finance and purchasing teams spent hours on repetitive checks: matching bank lines, chasing purchase approvals, validating records before entry.</dd>
-            <dt>Approach</dt><dd>Built AI assistants on an MCP server connected to NetSuite RESTlets, with prompt logic for decision support such as bank reconciliation and purchase approvals. A React dashboard shows what each agent did and where every workflow stands.</dd>
-            <dt>Result</dt><dd class="case-result">Routine validation, record creation, and follow-up communication now run through the agents, with humans approving exceptions instead of doing every step.</dd>
-          </dl></div>
-      </div>
-      <div class="case reveal clickable" tabindex="0" role="button" data-kind="Case study 2">
+      </a>
+      <a class="case case-link reveal" href="work/manufacturing-module.html" data-skills="manufacturing|inventory|suitescript 1.0 / 2.0 / 2.1|suiteflow|suiteanalytics|power bi (odbc)|custom records &amp; forms">
         <div class="case-body">
           <p class="case-num">Case study 2</p>
           <h3>Manufacturing module implementation</h3>
           <p class="teaser">Work orders, routings, BOMs and costing brought into NetSuite for a discrete manufacturer.</p>
           <ul class="tags"><li>Manufacturing</li><li>Work Orders</li><li>SuiteScript</li><li>SuiteAnalytics</li></ul>
-          <span class="card-hint" aria-hidden="true">View details <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="card-hint" aria-hidden="true">Read case study <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </div>
-        <div class="details"><figure class="case-fig"><svg viewBox="0 0 460 250" role="img" aria-label="Manufacturing module implementation architecture"><rect class="cs-box" x="10" y="20" width="110" height="50" rx="8"/><text class="cs-t" x="65.0" y="49.0">BOM &amp; routing</text><path class="cs-arrow" marker-end="url(#ah)" d="M120 45 L160 45"/><rect class="cs-box cs-box-accent" x="160" y="20" width="120" height="50" rx="8"/><text class="cs-t" x="220.0" y="49.0">Work order</text><path class="cs-arrow" marker-end="url(#ah)" d="M280 45 L320 45"/><rect class="cs-box" x="320" y="20" width="130" height="50" rx="8"/><text class="cs-t" x="385.0" y="41.0">Work centres</text><text class="cs-s" x="385.0" y="57.0">material issue</text><path class="cs-arrow" marker-end="url(#ah)" d="M385 70 L385 110"/><rect class="cs-box" x="300" y="110" width="150" height="50" rx="8"/><text class="cs-t" x="375.0" y="131.0">Assembly build</text><text class="cs-s" x="375.0" y="147.0">completion tracking</text><path class="cs-arrow" marker-end="url(#ah)" d="M300 135 L250 135"/><rect class="cs-box" x="100" y="110" width="150" height="50" rx="8"/><text class="cs-t" x="175.0" y="131.0">Costing dashboards</text><text class="cs-s" x="175.0" y="147.0">SuiteAnalytics + Power BI</text></svg></figure><dl>
-            <dt>Problem</dt><dd>A discrete manufacturer was tracking production outside NetSuite. Material usage, completions, and costs were reconciled by hand.</dd>
-            <dt>Approach</dt><dd>Configured work orders, assemblies, routings, BOMs, and work centres. Automated material issue and completion tracking with SuiteScript and workflows. Connected manufacturing data to procurement and inventory.</dd>
-            <dt>Result</dt><dd class="case-result">End-to-end production visibility in one system, with costing and production efficiency dashboards in SuiteAnalytics and Power BI.</dd>
-          </dl></div>
-      </div>
-      <div class="case reveal clickable" tabindex="0" role="button" data-kind="Case study 3">
+      </a>
+      <a class="case case-link reveal" href="work/hr-suitelet-apps.html" data-skills="suitelets &amp; restlets|custom records &amp; forms|roles &amp; dashboards|javascript|suitescript 1.0 / 2.0 / 2.1">
         <div class="case-body">
           <p class="case-num">Case study 3</p>
           <h3>Suitelet web apps for HR processes</h3>
           <p class="teaser">Timesheets, payroll and leave handled in NetSuite-backed web apps, with no NetSuite licences needed.</p>
           <ul class="tags"><li>Suitelet</li><li>Custom Records</li><li>Available Without Login</li><li>UI</li></ul>
-          <span class="card-hint" aria-hidden="true">View details <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="card-hint" aria-hidden="true">Read case study <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </div>
-        <div class="details"><figure class="case-fig"><svg viewBox="0 0 460 250" role="img" aria-label="Suitelet web apps for HR processes architecture"><rect class="cs-box" x="10" y="90" width="100" height="60" rx="8"/><text class="cs-t" x="60.0" y="116.0">Employees</text><text class="cs-s" x="60.0" y="132.0">browser, no licence</text><path class="cs-arrow" marker-end="url(#ah)" d="M110 120 L150 120"/><rect class="cs-box cs-box-accent" x="150" y="90" width="110" height="60" rx="8"/><text class="cs-t" x="205.0" y="116.0">Login Suitelet</text><text class="cs-s" x="205.0" y="132.0">token session</text><path class="cs-arrow" marker-end="url(#ah)" d="M260 120 L300 120"/><rect class="cs-box" x="300" y="20" width="150" height="40" rx="8"/><text class="cs-t" x="375.0" y="44.0">Dashboard</text><rect class="cs-box" x="300" y="70" width="150" height="40" rx="8"/><text class="cs-t" x="375.0" y="94.0">Timesheet</text><rect class="cs-box" x="300" y="120" width="150" height="40" rx="8"/><text class="cs-t" x="375.0" y="144.0">Payroll</text><rect class="cs-box" x="300" y="170" width="150" height="40" rx="8"/><text class="cs-t" x="375.0" y="194.0">Leave management</text><path class="cs-arrow" marker-end="url(#ah)" d="M355 210 L355 235"/><text class="cs-s" x="375" y="245">custom records in NetSuite</text></svg></figure><dl>
-            <dt>Problem</dt><dd>Every employee who needed to log time or apply for leave required a NetSuite licence and training, which was expensive and slow to roll out.</dd>
-            <dt>Approach</dt><dd>Built a set of Suitelet-based web apps: login, dashboard, timesheet, payroll, and leave management. Users authenticate through the login Suitelet and work in a simple UI, while data lands in custom records inside NetSuite.</dd>
-            <dt>Result</dt><dd class="case-result">Staff work in NetSuite-backed apps without NetSuite credentials or licences. HR data stays in one system of record.</dd>
-          </dl></div>
-      </div>
-      <div class="case reveal clickable" tabindex="0" role="button" data-kind="Case study 4">
+      </a>
+      <a class="case case-link reveal" href="work/power-bi-odbc.html" data-skills="power bi (odbc)|sql|suiteql|suiteanalytics|datasets &amp; workbooks">
         <div class="case-body">
           <p class="case-num">Case study 4</p>
           <h3>Power BI dashboards over ODBC</h3>
           <p class="teaser">Live finance dashboards in Power BI over ODBC, cutting manual reporting by about 40%.</p>
           <ul class="tags"><li>Power BI</li><li>ODBC</li><li>SuiteQL / SQL</li><li>Finance</li></ul>
-          <span class="card-hint" aria-hidden="true">View details <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="card-hint" aria-hidden="true">Read case study <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </div>
-        <div class="details"><figure class="case-fig"><svg viewBox="0 0 460 250" role="img" aria-label="Power BI dashboards over ODBC architecture"><rect class="cs-box" x="10" y="80" width="110" height="60" rx="8"/><text class="cs-t" x="65.0" y="106.0">NetSuite</text><text class="cs-s" x="65.0" y="122.0">transactions, GL</text><path class="cs-arrow" marker-end="url(#ah)" d="M120 110 L160 110"/><rect class="cs-box cs-box-accent" x="160" y="80" width="120" height="60" rx="8"/><text class="cs-t" x="220.0" y="106.0">ODBC</text><text class="cs-s" x="220.0" y="122.0">SuiteAnalytics Connect</text><path class="cs-arrow" marker-end="url(#ah)" d="M280 110 L320 110"/><rect class="cs-box" x="320" y="80" width="130" height="60" rx="8"/><text class="cs-t" x="385.0" y="106.0">SQL datasets</text><text class="cs-s" x="385.0" y="122.0">scheduled refresh</text><path class="cs-arrow" marker-end="url(#ah)" d="M385 140 L385 175"/><rect class="cs-box" x="300" y="175" width="150" height="50" rx="8"/><text class="cs-t" x="375.0" y="196.0">Power BI</text><text class="cs-s" x="375.0" y="212.0">finance dashboards</text></svg></figure><dl>
-            <dt>Problem</dt><dd>Leadership wanted live financial analytics, but reports were exported to spreadsheets and rebuilt every period.</dd>
-            <dt>Approach</dt><dd>Connected Power BI to NetSuite through ODBC and SuiteAnalytics Connect. Authored the SQL queries, built the datasets, and automated workbook refreshes.</dd>
-            <dt>Result</dt><dd class="case-result">Real-time balance sheet, income statement, AR and AP dashboards. Manual reporting workload down by about 40%.</dd>
-          </dl></div>
-      </div>
+      </a>
     </div>
   </section>
 
@@ -335,63 +316,63 @@
       <span class="num">05</span><h2>Projects</h2>
     </div>
     <div class="project-grid">
-      <div class="project reveal clickable" tabindex="0" role="button" data-kind="Project">
+      <div class="project reveal clickable" tabindex="0" role="button" data-kind="Project" data-skills="ai document extraction|openai api|suitescript 1.0 / 2.0 / 2.1|procure to pay|suitelets &amp; restlets">
         <span class="p-icon">AI</span>
         <h3>AP Invoice AI Agent</h3>
         <div class="details"><p>Reads vendor invoices, extracts header and line data, and creates vendor bills in NetSuite with validation against POs and items.</p></div>
         <ul class="tags"><li>AI / OCR</li><li>SuiteScript 2.1</li><li>Procure to Pay</li></ul>
       <span class="card-hint" aria-hidden="true">View details <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </div>
-      <div class="project reveal clickable" tabindex="0" role="button" data-kind="Project">
+      <div class="project reveal clickable" tabindex="0" role="button" data-kind="Project" data-skills="ai document extraction|openai api|suitelets &amp; restlets|order to cash">
         <span class="p-icon">AI</span>
         <h3>Sales Order AI Agent</h3>
         <div class="details"><p>Parses customer purchase-order PDFs and creates NetSuite sales orders, matching customers and items automatically.</p></div>
         <ul class="tags"><li>AI / OCR</li><li>RESTlet</li><li>Order to Cash</li></ul>
       <span class="card-hint" aria-hidden="true">View details <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </div>
-      <div class="project reveal clickable" tabindex="0" role="button" data-kind="Project">
+      <div class="project reveal clickable" tabindex="0" role="button" data-kind="Project" data-skills="netsuite mcp server|claude skills|order to cash|prompt engineering">
         <span class="p-icon">MCP</span>
         <h3>Invoice Payment Reminders</h3>
         <div class="details"><p>NetSuite MCP server paired with Claude to find overdue invoices and send payment reminders without manual follow-up.</p></div>
         <ul class="tags"><li>NetSuite MCP</li><li>Claude</li><li>Accounts Receivable</li></ul>
       <span class="card-hint" aria-hidden="true">View details <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </div>
-      <div class="project reveal clickable" tabindex="0" role="button" data-kind="Project">
+      <div class="project reveal clickable" tabindex="0" role="button" data-kind="Project" data-skills="rest web services|oauth 1.0 / 2.0 &amp; tba|advanced pdf / freemarker|order to cash">
         <span class="p-icon">GST</span>
         <h3>India e-Invoice Integration</h3>
         <div class="details"><p>Integration with the Indian government e-invoice portal covering IRN generation, QR codes, and e-way bills from NetSuite transactions.</p></div>
         <ul class="tags"><li>REST Integration</li><li>Compliance</li><li>Advanced PDF</li></ul>
       <span class="card-hint" aria-hidden="true">View details <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </div>
-      <div class="project reveal clickable" tabindex="0" role="button" data-kind="Project">
+      <div class="project reveal clickable" tabindex="0" role="button" data-kind="Project" data-skills="suitelets &amp; restlets|suiteql|intercompany / oneworld|sql|roles &amp; dashboards">
         <span class="p-icon">AR</span>
         <h3>AR / AP Aging Suitelet</h3>
         <div class="details"><p>Aging report with selectable long-term buckets, period or date as-of, consolidated FX, drill-down, GL reconciliation tile, and CSV export within governance limits.</p></div>
         <ul class="tags"><li>Suitelet</li><li>Multi-Subsidiary</li><li>Reporting</li></ul>
       <span class="card-hint" aria-hidden="true">View details <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </div>
-      <div class="project reveal clickable" tabindex="0" role="button" data-kind="Project">
+      <div class="project reveal clickable" tabindex="0" role="button" data-kind="Project" data-skills="suiteql|custom records &amp; forms|inventory|procure to pay">
         <span class="p-icon">$</span>
         <h3>Freight &amp; Landed Cost Suite</h3>
         <div class="details"><p>Custom-record data model and suitelets that attribute inbound, outbound, and duty costs per order line and invoice, prorated so partial invoices never double count.</p></div>
         <ul class="tags"><li>SuiteQL</li><li>Custom Records</li><li>Landed Cost</li></ul>
       <span class="card-hint" aria-hidden="true">View details <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </div>
-      <div class="project reveal clickable" tabindex="0" role="button" data-kind="Project">
+      <div class="project reveal clickable" tabindex="0" role="button" data-kind="Project" data-skills="suiteflow|suitelets &amp; restlets|procure to pay|payment requests">
         <span class="p-icon">✓</span>
         <h3>One-Click Email PO Approval</h3>
         <div class="details"><p>Two-stage purchase-order approval through tokenised, single-use links in email, handled by an available-without-login suitelet. No NetSuite login needed.</p></div>
         <ul class="tags"><li>SuiteFlow</li><li>Suitelet</li><li>Approvals</li></ul>
       <span class="card-hint" aria-hidden="true">View details <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </div>
-      <div class="project reveal clickable" tabindex="0" role="button" data-kind="Project">
+      <div class="project reveal clickable" tabindex="0" role="button" data-kind="Project" data-skills="suitelets &amp; restlets|inventory|wms|saved search">
         <span class="p-icon">WMS</span>
         <h3>Order Allocation &amp; WMS Report</h3>
         <div class="details"><p>Expandable sales-order report showing allocation and available-stock percentages with WMS transmission status, threshold highlighting, and export.</p></div>
         <ul class="tags"><li>Suitelet</li><li>Inventory</li><li>WMS</li></ul>
       <span class="card-hint" aria-hidden="true">View details <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </div>
-      <div class="project reveal clickable" tabindex="0" role="button" data-kind="Project">
+      <div class="project reveal clickable" tabindex="0" role="button" data-kind="Project" data-skills="suitescript 1.0 / 2.0 / 2.1|custom records &amp; forms|manufacturing|javascript">
         <span class="p-icon">#</span>
         <h3>Transaction Numbering Framework</h3>
         <div class="details"><p>Hybrid numbering for a manufacturing implementation: native auto-numbering for standard types, scripted numbering for custom transaction types, and a journal-number validator.</p></div>

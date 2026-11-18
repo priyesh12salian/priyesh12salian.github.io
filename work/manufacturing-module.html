@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manufacturing module implementation — Case study — Priyesh Salian</title>
+  <meta name="description" content="Work orders, routings, BOMs and costing brought into NetSuite for a discrete manufacturer.">
+  <link rel="canonical" href="https://priyesh12salian.github.io/work/manufacturing-module.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Priyesh Salian">
+  <meta property="og:title" content="Manufacturing module implementation — case study">
+  <meta property="og:description" content="Work orders, routings, BOMs and costing brought into NetSuite for a discrete manufacturer.">
+  <meta property="og:url" content="https://priyesh12salian.github.io/work/manufacturing-module.html">
+  <meta property="og:image" content="https://priyesh12salian.github.io/assets/images/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <link rel="alternate" type="application/rss+xml" title="Priyesh Salian — Notes" href="/feed.xml">
+  <script>(function(){try{var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
+  <!-- Google Analytics 4 -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-YEP2NZD2GF');
+    // Load the Analytics library after the page has painted so it never delays rendering
+    window.addEventListener('load', function () {
+      var s = document.createElement('script'); s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YEP2NZD2GF'; document.head.appendChild(s);
+    });
+  </script>
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="cs-ah"/></marker></defs></svg>
+<header class="nav scrolled" id="nav">
+  <a class="logo" href="/">PS<span>.</span></a>
+  <nav class="nav-links" id="navLinks">
+    <a href="/#about">About</a>
+    <a href="/#experience">Experience</a>
+    <a href="/#skills">Skills</a>
+    <a href="/#work" class="active">Case Studies</a>
+    <a href="/#projects">Projects</a>
+    <a href="/#services">Services</a>
+    <a href="/notes.html">Notes</a>
+    <a href="/snippets.html">Snippets</a>
+    <a href="/#contact" class="nav-cta">Contact</a>
+    <span class="nav-ink" id="navInk" aria-hidden="true"></span>
+  </nav>
+  <div class="nav-right">
+    <button class="theme-btn" id="themeBtn" aria-label="Switch theme" title="Switch theme">
+      <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4l1.4 1.4M4.9 19.1l1.4-1.4m11.4-11.4l1.4-1.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+  </div>
+  <span class="progress" id="progress" aria-hidden="true"></span>
+</header>
+
+<main id="main" class="page">
+  <article class="section casepage">
+    <p class="crumbs"><a href="/#work">Case studies</a> <span>/</span> 2 of 4</p>
+    <p class="case-num">Case study 2</p>
+    <h1>Manufacturing module implementation</h1>
+    <p class="standfirst">Work orders, routings, BOMs and costing brought into NetSuite for a discrete manufacturer.</p>
+    <ul class="tags"><li>Manufacturing</li><li>Work Orders</li><li>SuiteScript</li><li>SuiteAnalytics</li></ul>
+
+    <div class="story" id="story">
+      <figure class="story-fig" data-active="1">
+        <svg viewBox="0 0 460 250" role="img" aria-label="Manufacturing module implementation architecture, highlighted step by step"><g class="st" data-step="2"><rect class="cs-box" x="10" y="20" width="110" height="50" rx="8"/><text class="cs-t" x="65.0" y="49.0">BOM &amp; routing</text></g><path class="cs-arrow st" data-step="2" marker-end="url(#ah)" d="M120 45 L160 45"/><g class="st" data-step="2"><rect class="cs-box cs-box-accent" x="160" y="20" width="120" height="50" rx="8"/><text class="cs-t" x="220.0" y="49.0">Work order</text></g><path class="cs-arrow st" data-step="3" marker-end="url(#ah)" d="M280 45 L320 45"/><g class="st" data-step="3"><rect class="cs-box" x="320" y="20" width="130" height="50" rx="8"/><text class="cs-t" x="385.0" y="45.0">Work centres</text><text class="cs-s" x="385.0" y="61.0">material issue</text></g><path class="cs-arrow st" data-step="3" marker-end="url(#ah)" d="M385 70 L385 110"/><g class="st" data-step="3"><rect class="cs-box" x="300" y="110" width="150" height="50" rx="8"/><text class="cs-t" x="375.0" y="135.0">Assembly build</text><text class="cs-s" x="375.0" y="151.0">completion tracking</text></g><path class="cs-arrow st" data-step="4" marker-end="url(#ah)" d="M300 135 L250 135"/><g class="st" data-step="4"><rect class="cs-box" x="100" y="110" width="150" height="50" rx="8"/><text class="cs-t" x="175.0" y="135.0">Costing dashboards</text><text class="cs-s" x="175.0" y="151.0">SuiteAnalytics + Power BI</text></g><path class="cs-arrow st" data-step="4" marker-end="url(#ah)" d="M175 160 L175 200"/><g class="st" data-step="4"><rect class="cs-box" x="100" y="200" width="150" height="40" rx="8"/><text class="cs-t" x="175.0" y="224.0">Procurement &amp; inventory</text></g></svg>
+        <figcaption><span id="stepLabel">Scroll to walk through the build</span></figcaption>
+      </figure>
+      <div class="steps">
+        <div class="step" data-step="1">
+          <p class="step-num">Problem</p>
+          <h2>The problem</h2>
+          <p>A discrete manufacturer was running production outside NetSuite. Material usage, completions and costs lived in spreadsheets and were reconciled by hand at month end, so nobody had a current view of what a build actually cost.</p>
+        </div>
+        <div class="step" data-step="2">
+          <p class="step-num">Step 1</p>
+          <h2>Configure the model</h2>
+          <p>We set up assembly items, multi-level BOMs, routings and work centres, then work orders that pull from them. Standard NetSuite where it fit, with custom fields only where the shop floor needed something the platform did not have.</p>
+        </div>
+        <div class="step" data-step="3">
+          <p class="step-num">Step 2</p>
+          <h2>Automate the shop floor steps</h2>
+          <p>SuiteScript and workflows handle material issue when a work order is released and completion tracking as operations finish. Operators record what happened; the system posts the inventory and WIP movements.</p>
+        </div>
+        <div class="step" data-step="4">
+          <p class="step-num">Step 3</p>
+          <h2>Connect costing to the rest of the business</h2>
+          <p>Production data now feeds procurement and inventory directly. Costing and production efficiency dashboards run in SuiteAnalytics, with finance views in Power BI over ODBC.</p>
+        </div>
+        <div class="step" data-step="5">
+          <p class="step-num">Result</p>
+          <h2>The result</h2>
+          <p>End-to-end production visibility in one system. Planned versus actual cost per build is available the day the build closes, and month-end reconciliation of production disappeared.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="article-foot">
+      <a href="/#work" class="btn btn-ghost">← All case studies</a>
+      <a href="hr-suitelet-apps.html" class="btn btn-ghost">Next: Suitelet web apps for HR processes →</a>
+      <a href="/#contact" class="btn btn-primary">Talk about a project</a>
+    </div>
+  </article>
+</main>
+
+<button class="to-top" id="toTop" aria-label="Back to top"><svg viewBox="0 0 24 24"><path d="M12 19V5m0 0l-6 6m6-6l6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+
+<footer>
+  <p>© <span id="year"></span> Priyesh Salian · Built with HTML, CSS &amp; JS</p>
+</footer>
+<script src="../js/main.js"></script>
+<script src="../js/story.js"></script>
+</body>
+</html>
