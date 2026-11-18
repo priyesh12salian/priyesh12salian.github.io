@@ -518,3 +518,9 @@ html { color-scheme: light dark; }
 }
 @media (prefers-reduced-motion: reduce) { .story-fig .cs-arrow.st.lit { animation: none; } .step { transition: none; } }
 
+
+/* ---------- Comments ---------- */
+.comments { margin-top: 48px; padding-top: 36px; border-top: 1px solid var(--border); }
+.comments-head h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 8px; }
+.comments-head p { color: var(--muted); max-width: 680px; margin-bottom: 22px; }
+.giscus, .giscus-frame { width: 100%; }
