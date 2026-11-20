@@ -107,10 +107,10 @@
     $('#govType').value = 'sched';
     $('#opsBody').innerHTML = OPS.map(o => `<tr data-id="${o.id}">
       <td class="name">${esc(o.name)}${o.sub ? `<small>${esc(o.sub)}</small>` : ''}</td>
-      <td>${o.rec ? `<select data-cat><option value="tx">Transaction</option><option value="custom">Custom record</option><option value="other">Other (entity, item…)</option></select>` : '—'}</td>
+      <td>${o.rec ? `<select data-cat aria-label="${esc(o.name)} record type"><option value="tx">Transaction</option><option value="custom">Custom record</option><option value="other">Other (entity, item…)</option></select>` : '—'}</td>
       <td class="u" data-u>${o.rec ? o.rec.tx : o.u}</td>
       <td><input type="number" min="0" max="10000" value="${o.n}" data-n aria-label="${esc(o.name)} count"></td>
-      <td><select data-per><option value="rec"${o.per === 'rec' ? ' selected' : ''}>per record</option><option value="run"${o.per === 'run' ? ' selected' : ''}>once per run</option></select></td>
+      <td><select data-per aria-label="${esc(o.name)} applies"><option value="rec"${o.per === 'rec' ? ' selected' : ''}>per record</option><option value="run"${o.per === 'run' ? ' selected' : ''}>once per run</option></select></td>
     </tr>`).join('');
     const out = $('#govOut');
     const calc = () => {
