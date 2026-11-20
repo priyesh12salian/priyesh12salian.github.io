@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tools — Priyesh Salian</title>
+  <meta name="description" content="Free browser tools for NetSuite work: a project scope estimator, a SuiteScript governance calculator and an integration map explorer.">
+  <link rel="canonical" href="https://priyesh12salian.github.io/tools.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Priyesh Salian">
+  <meta property="og:title" content="Tools — Priyesh Salian">
+  <meta property="og:description" content="Free browser tools for NetSuite work: a project scope estimator, a SuiteScript governance calculator and an integration map explorer.">
+  <meta property="og:url" content="https://priyesh12salian.github.io/tools.html">
+  <meta property="og:image" content="https://priyesh12salian.github.io/assets/images/og/tools.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Tools — Priyesh Salian">
+  <meta name="twitter:description" content="Free browser tools for NetSuite work: a project scope estimator, a SuiteScript governance calculator and an integration map explorer.">
+  <meta name="twitter:image" content="https://priyesh12salian.github.io/assets/images/og/tools.png">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="alternate" type="application/rss+xml" title="Priyesh Salian — Notes" href="/feed.xml">
+  <script>(function(){try{var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
+  <!-- Google Analytics 4 -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-YEP2NZD2GF');
+    // Load the Analytics library after the page has painted so it never delays rendering
+    window.addEventListener('load', function () {
+      var s = document.createElement('script'); s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YEP2NZD2GF'; document.head.appendChild(s);
+    });
+  </script>
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="nav scrolled" id="nav">
+  <a class="logo" href="/">PS<span>.</span></a>
+  <nav class="nav-links" id="navLinks">
+    <a href="/#about">About</a>
+    <a href="/#experience">Experience</a>
+    <a href="/#skills">Skills</a>
+    <a href="/#work">Case Studies</a>
+    <a href="/#projects">Projects</a>
+    <a href="/#services">Services</a>
+    <a href="/notes.html">Notes</a>
+    <a href="/snippets.html">Snippets</a>
+    <a href="/tools.html" class="active">Tools</a>
+    <a href="/#contact" class="nav-cta">Contact</a>
+    <span class="nav-ink" id="navInk" aria-hidden="true"></span>
+  </nav>
+  <div class="nav-right">
+    <button class="theme-btn" id="themeBtn" aria-label="Switch theme" title="Switch theme">
+      <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4l1.4 1.4M4.9 19.1l1.4-1.4m11.4-11.4l1.4-1.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+  </div>
+  <span class="progress" id="progress" aria-hidden="true"></span>
+</header>
+<main id="main" class="page">
+  <section class="section">
+    <div class="section-head reveal">
+      <h2>Tools</h2>
+    </div>
+    <p class="section-intro reveal">Three small tools that run in your browser. Nothing you enter leaves the page.</p>
+    <nav class="tool-nav reveal" aria-label="Tools on this page"><a href="#estimator">Scope estimator</a><a href="#governance">Governance calculator</a><a href="#map">Integration map</a></nav>
+
+    <article class="tool reveal" id="estimator">
+      <div class="tool-head">
+        <h2>Project scope estimator</h2>
+        <p>Tick what your NetSuite project needs and get an indicative effort range in weeks, with the engagement model I would suggest. Copy the summary and send it with your first message.</p>
+      </div>
+      <div class="tool-grid">
+        <form id="estForm" onsubmit="return false" aria-label="Scope options"></form>
+        <div class="result" id="estOut" aria-live="polite"></div>
+      </div>
+    </article>
+
+    <article class="tool reveal" id="governance">
+      <div class="tool-head">
+        <h2>SuiteScript governance calculator</h2>
+        <p>Enter what a script does per record and how many records it handles in one run. The calculator totals the governance units against the limit for that script type and tells you when to move the work to a Map/Reduce.</p>
+      </div>
+      <div class="tool-grid">
+        <div>
+          <div class="field"><label class="lbl" for="govType">Script type</label><select id="govType"></select></div>
+          <div class="field"><label class="lbl" for="govRecords">Records processed in one run</label><input type="number" id="govRecords" min="1" max="1000000" value="200"></div>
+          <div class="ops-wrap">
+            <table class="ops">
+              <thead><tr><th>Operation</th><th>Record type</th><th>Units</th><th>Count</th><th>Applies</th></tr></thead>
+              <tbody id="opsBody"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="result" id="govOut" aria-live="polite"></div>
+      </div>
+    </article>
+
+    <article class="tool reveal" id="map">
+      <div class="tool-head">
+        <h2>Integration map explorer</h2>
+        <p>Every platform here has been connected to NetSuite in a project I delivered. Select one to see what moves, in which direction, and what runs on the NetSuite side.</p>
+      </div>
+      <div class="imap">
+        <figure class="imap-fig" id="mapFig"></figure>
+        <div class="imap-panel" id="mapPanel" aria-live="polite"></div>
+      </div>
+    </article>
+
+    <p class="section-foot">Want one of these tailored to your account? <a class="inline-link" href="/#contact">Get in touch</a> or <a class="inline-link" href="/ask.html">ask on the board</a>.</p>
+  </section>
+</main>
+
+<button class="to-top" id="toTop" aria-label="Back to top"><svg viewBox="0 0 24 24"><path d="M12 19V5m0 0l-6 6m6-6l6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+
+<footer>
+  <nav class="foot-nav" aria-label="More pages">
+    <a href="/notes.html">Notes</a><a href="/snippets.html">Snippets</a><a href="/tools.html">Tools</a><a href="/now.html">Now</a><a href="/ask.html">Ask me anything</a><a href="/feed.xml">RSS</a><a href="/assets/docs/Priyesh-Salian-Resume.pdf" download data-resume>Résumé</a>
+  </nav>
+  <p>© <span id="year"></span> Priyesh Salian · Built with HTML, CSS &amp; JS</p>
+</footer>
+<script src="js/main.js"></script>
+<script src="js/search.js"></script>
+<script src="js/tools.js"></script>
+</body>
+</html>

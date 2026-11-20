@@ -207,3 +207,65 @@ if (ghGrid) {
 }
 
 document.querySelectorAll('a[data-book]').forEach(a => a.addEventListener('click', () => track('book_call', { target: a.getAttribute('href') })));
+
+// Case study filter chips
+const caseFilter = document.getElementById('caseFilter');
+if (caseFilter) {
+  const cases = [...document.querySelectorAll('.case-list .case')];
+  const countEl = document.getElementById('filterCount');
+  caseFilter.addEventListener('click', (e) => {
+    const b = e.target.closest('button');
+    if (!b) return;
+    caseFilter.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b));
+    const tag = b.dataset.tag;
+    let shown = 0;
+    cases.forEach(c => {
+      const show = tag === 'all' || (c.dataset.tags || '').split(' ').includes(tag);
+      if (show) shown++;
+      if (show && c.classList.contains('is-hidden')) {
+        c.classList.remove('is-hidden'); c.classList.add('is-out', 'visible');
+        requestAnimationFrame(() => requestAnimationFrame(() => c.classList.remove('is-out')));
+      } else if (!show && !c.classList.contains('is-hidden')) {
+        c.classList.add('is-out');
+        setTimeout(() => { if (c.classList.contains('is-out')) c.classList.add('is-hidden'); }, reducedMotion ? 0 : 300);
+      }
+    });
+    if (countEl) countEl.textContent = shown + ' of ' + cases.length;
+    track('filter_cases', { tag });
+  });
+}
+
+// GitHub contribution heatmap (public contributions, last 12 months; hidden if the request fails)
+const ghHeat = document.getElementById('ghHeat');
+if (ghHeat) {
+  fetch('https://github-contributions-api.jogruber.de/v4/priyesh12salian?y=last')
+    .then(r => r.ok ? r.json() : Promise.reject(r.status))
+    .then(d => {
+      const days = d.contributions;
+      if (!days || !days.length) return;
+      const pad = new Date(days[0].date + 'T00:00:00').getDay();
+      const cell = 12, step = 15, top = 18, left = 32;
+      const weeks = Math.ceil((days.length + pad) / 7);
+      let rects = '', months = '', lastM = -1;
+      days.forEach((day, i) => {
+        const idx = i + pad, w = Math.floor(idx / 7), dow = idx % 7;
+        const dt = new Date(day.date + 'T00:00:00');
+        if ((dow === 0 || i === 0) && dt.getMonth() !== lastM) {
+          lastM = dt.getMonth();
+          if (i === 0 || w < weeks - 1) months += `<text class="hm" x="${left + w * step}" y="10">${dt.toLocaleString('en', { month: 'short' })}</text>`;
+        }
+        rects += `<rect x="${left + w * step}" y="${top + dow * step}" width="${cell}" height="${cell}" data-l="${day.level}"><title>${day.count} contribution${day.count === 1 ? '' : 's'} on ${day.date}</title></rect>`;
+      });
+      const labels = ['Mon', 'Wed', 'Fri'].map((l, i) => `<text class="hm" x="0" y="${top + (1 + i * 2) * step + 9}">${l}</text>`).join('');
+      document.getElementById('heatSvg').innerHTML = `<svg viewBox="0 0 ${left + weeks * step} ${top + 7 * step}" role="img" aria-label="GitHub contributions over the last year">${months}${labels}${rects}</svg>`;
+      document.getElementById('heatTotal').textContent = `${d.total.lastYear} public contributions in the last year`;
+      ghHeat.hidden = false;
+      ghHeat.classList.add('visible');
+    })
+    .catch(() => {});
+}
+
+// Installable site: register the service worker on the live domain only
+if ('serviceWorker' in navigator && location.protocol === 'https:') {
+  window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js').catch(() => {}));
+}

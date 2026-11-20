@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offline — Priyesh Salian</title>
+  <meta name="robots" content="noindex">
+  <script>(function(){try{var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+  <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .nf { min-height: 100svh; display: grid; place-items: center; text-align: center; padding: 24px; }
+    .nf .code { font-family: var(--mono); font-size: clamp(3rem, 12vw, 6rem); font-weight: 500; line-height: 1; color: var(--accent); }
+    .nf h1 { font-size: clamp(1.4rem, 3vw, 2rem); margin: 12px 0 10px; }
+    .nf p { color: var(--muted); margin-bottom: 28px; }
+  </style>
+</head>
+<body>
+<main class="nf">
+  <div>
+    <div class="code">offline</div>
+    <h1>You're not connected right now.</h1>
+    <p>Pages you opened before are still available. This one isn't cached yet.</p>
+    <a href="/" class="btn btn-primary">Go to the home page</a>
+  </div>
+</main>
+</body>
+</html>

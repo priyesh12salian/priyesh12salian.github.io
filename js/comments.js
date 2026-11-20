@@ -2,6 +2,7 @@
 (function () {
   const host = document.querySelector('.giscus');
   if (!host) return;
+  const term = host.dataset.term;
   const giscusTheme = () => document.documentElement.getAttribute('data-theme') === 'dark' ? 'transparent_dark' : 'light';
   const s = document.createElement('script');
   const attrs = {
@@ -10,7 +11,8 @@
     'data-repo-id': 'R_kgDOVR3Bvw',
     'data-category': 'Announcements',
     'data-category-id': 'DIC_kwDOVR3Bv84DLZcO',
-    'data-mapping': 'pathname',
+    'data-mapping': term ? 'specific' : 'pathname',
+    ...(term ? { 'data-term': term } : {}),
     'data-strict': '0',
     'data-reactions-enabled': '1',
     'data-emit-metadata': '0',

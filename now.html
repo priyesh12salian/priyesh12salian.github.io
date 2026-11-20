@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Now — Priyesh Salian</title>
+  <meta name="description" content="What Priyesh Salian is building, learning and thinking about this month in NetSuite and AI automation.">
+  <link rel="canonical" href="https://priyesh12salian.github.io/now.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Priyesh Salian">
+  <meta property="og:title" content="Now — Priyesh Salian">
+  <meta property="og:description" content="What Priyesh Salian is building, learning and thinking about this month in NetSuite and AI automation.">
+  <meta property="og:url" content="https://priyesh12salian.github.io/now.html">
+  <meta property="og:image" content="https://priyesh12salian.github.io/assets/images/og/now.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Now — Priyesh Salian">
+  <meta name="twitter:description" content="What Priyesh Salian is building, learning and thinking about this month in NetSuite and AI automation.">
+  <meta name="twitter:image" content="https://priyesh12salian.github.io/assets/images/og/now.png">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="alternate" type="application/rss+xml" title="Priyesh Salian — Notes" href="/feed.xml">
+  <script>(function(){try{var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
+  <!-- Google Analytics 4 -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-YEP2NZD2GF');
+    // Load the Analytics library after the page has painted so it never delays rendering
+    window.addEventListener('load', function () {
+      var s = document.createElement('script'); s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YEP2NZD2GF'; document.head.appendChild(s);
+    });
+  </script>
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="nav scrolled" id="nav">
+  <a class="logo" href="/">PS<span>.</span></a>
+  <nav class="nav-links" id="navLinks">
+    <a href="/#about">About</a>
+    <a href="/#experience">Experience</a>
+    <a href="/#skills">Skills</a>
+    <a href="/#work">Case Studies</a>
+    <a href="/#projects">Projects</a>
+    <a href="/#services">Services</a>
+    <a href="/notes.html">Notes</a>
+    <a href="/snippets.html">Snippets</a>
+    <a href="/tools.html">Tools</a>
+    <a href="/#contact" class="nav-cta">Contact</a>
+    <span class="nav-ink" id="navInk" aria-hidden="true"></span>
+  </nav>
+  <div class="nav-right">
+    <button class="theme-btn" id="themeBtn" aria-label="Switch theme" title="Switch theme">
+      <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4l1.4 1.4M4.9 19.1l1.4-1.4m11.4-11.4l1.4-1.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+  </div>
+  <span class="progress" id="progress" aria-hidden="true"></span>
+</header>
+<main id="main" class="page">
+  <section class="section">
+    <div class="section-head reveal">
+      <h2>Now</h2>
+    </div>
+    <p class="section-intro reveal">What I am working on, learning and thinking about this month. A snapshot, not a résumé.</p>
+    <p class="now-updated reveal">Updated <time datetime="2026-11-20">20 Nov 2026</time> · Pune, India</p>
+    <div class="now-grid">
+      <article class="now-card reveal">
+        <h2><span class="p-icon">AI</span> Building</h2>
+        <ul>
+          <li>An MCP server for NetSuite whose tools map onto narrow RESTlets, so an AI agent can reconcile bank lines and route purchase approvals while a person approves the exceptions.</li>
+          <li>A React review dashboard that shows every agent action with its inputs, reasoning and confidence, backed by a custom record in NetSuite for audit.</li>
+          <li>The <a class="inline-link" href="/tools.html">tools</a> on this site: a scope estimator and a governance calculator, with more to come.</li>
+        </ul>
+      </article>
+      <article class="now-card reveal">
+        <h2><span class="p-icon">JS</span> Learning</h2>
+        <ul>
+          <li>Claude Skills and MCP patterns for ERP work: how narrow, boring tools beat clever prompts.</li>
+          <li>Tuning Map/Reduce scripts for large volumes without hitting governance limits.</li>
+          <li>Data modelling in Power BI over SuiteAnalytics Connect for finance teams.</li>
+        </ul>
+      </article>
+      <article class="now-card reveal">
+        <h2><span class="p-icon">SOP</span> Thinking about</h2>
+        <ul>
+          <li>Where the line sits between automation that saves a team time and automation nobody trusts. Starting read-only and widening permissions slowly keeps working.</li>
+          <li>Writing more: one practical <a class="inline-link" href="/notes.html">note</a> a month from real NetSuite work.</li>
+        </ul>
+      </article>
+      <article class="now-card reveal">
+        <h2><span class="p-icon">✓</span> Availability</h2>
+        <ul>
+          <li>Open to new projects: contract or project-based, remote, working in IST with overlap for European hours and US mornings.</li>
+          <li>Quickest way to reach me is <a class="inline-link" href="https://www.linkedin.com/in/priyesh-salian-03b0551b5" target="_blank" rel="noopener">LinkedIn</a>, or try the <a class="inline-link" href="/tools.html#estimator">scope estimator</a> first.</li>
+        </ul>
+      </article>
+    </div>
+    <p class="section-foot">This is a <a class="inline-link" href="https://nownownow.com/about" target="_blank" rel="noopener">now page</a>. It changes every few weeks.</p>
+  </section>
+</main>
+
+<button class="to-top" id="toTop" aria-label="Back to top"><svg viewBox="0 0 24 24"><path d="M12 19V5m0 0l-6 6m6-6l6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+
+<footer>
+  <nav class="foot-nav" aria-label="More pages">
+    <a href="/notes.html">Notes</a><a href="/snippets.html">Snippets</a><a href="/tools.html">Tools</a><a href="/now.html">Now</a><a href="/ask.html">Ask me anything</a><a href="/feed.xml">RSS</a><a href="/assets/docs/Priyesh-Salian-Resume.pdf" download data-resume>Résumé</a>
+  </nav>
+  <p>© <span id="year"></span> Priyesh Salian · Built with HTML, CSS &amp; JS</p>
+</footer>
+<script src="js/main.js"></script>
+<script src="js/search.js"></script>
+</body>
+</html>
