@@ -41,7 +41,21 @@
       <div class="field"><span class="lbl">Subsidiaries</span>${seg('subs', SCOPE.subs)}</div>
       <div class="field"><span class="lbl">Training and SOPs</span><div class="seg"><label><input type="radio" name="train" value="0" checked>Not needed</label><label><input type="radio" name="train" value="1">Include (1–2 wk)</label></div></div>`;
     const out = $('#estOut');
+    // Selections live in ?est=... so an estimate can be shared as a link
+    const GROUPS = ['eng', 'mod', 'int', 'ai', 'mig', 'subs', 'train'];
+    const state = () => GROUPS.map(g => [...est.querySelectorAll(`input[name="${g}"]:checked`)].map(i => i.value).join('.')).join('|') + '|' + (+$('#nScripts').value || 0) + '|' + (+$('#nReports').value || 0);
+    const restore = (v) => {
+      const parts = v.split('|');
+      GROUPS.forEach((g, i) => { const vals = (parts[i] || '').split('.'); est.querySelectorAll(`input[name="${g}"]`).forEach(inp => { inp.checked = vals.includes(inp.value); }); });
+      $('#nScripts').value = Math.min(50, Math.max(0, +parts[7] || 0)); $('#nReports').value = Math.min(50, Math.max(0, +parts[8] || 0));
+      GROUPS.forEach(g => { if (!est.querySelector(`input[name="${g}"]:checked`) && est.querySelector(`input[name="${g}"][type="radio"]`)) est.querySelector(`input[name="${g}"]`).checked = true; });
+    };
+    const shared = new URLSearchParams(location.search).get('est');
+    if (shared) restore(shared);
+    let touched = !!shared;
+    const shareUrl = () => location.origin + '/tools.html?est=' + encodeURIComponent(state()) + '#estimator';
     const calc = () => {
+      if (touched) { try { history.replaceState(null, '', '/tools.html?est=' + encodeURIComponent(state()) + '#estimator'); } catch (e) {} }
       const lines = [];
       let lo = 0, hi = 0;
       const pick = (name) => [...est.querySelectorAll(`input[name="${name}"]:checked`)].map(i => i.value);
@@ -65,15 +79,19 @@
         <h3>Indicative effort</h3>
         <p class="big">${fmt(lo)}–${fmt(hi)} <small>weeks${months}</small></p>
         <ul class="lines">${lines.map(l => `<li><span>${esc(l[0])}</span><span>${l[2] ? fmt(l[1]) + '–' + fmt(l[2]) + ' wk' : ''}</span></li>`).join('')}<li class="total"><span>Suggested model</span><span>${model}</span></li></ul>
-        <div class="hero-actions"><a class="btn btn-primary" href="/#contact" data-book>Discuss this scope</a><button class="btn btn-ghost" type="button" id="copyEst">Copy summary</button></div>
-        <p class="note">Ranges are for one experienced consultant working in your sandbox, and assume a decision-maker on your side. They are a starting point for a conversation, not a quote. A written scope follows a discovery call.</p>`;
+        <div class="hero-actions"><a class="btn btn-primary" href="/#contact" data-book>Discuss this scope</a><button class="btn btn-ghost" type="button" id="copyEst">Copy summary</button><button class="btn btn-ghost" type="button" id="shareEst">Copy link</button></div>
+        <p class="note">Ranges are for one experienced consultant working in your sandbox, and assume a decision-maker on your side. They are a starting point for a conversation, not a quote. A written scope follows a discovery call. <em>Copy link</em> gives you a URL with these selections to send along.</p>`;
       $('#copyEst').addEventListener('click', (e) => {
         navigator.clipboard?.writeText(summary).then(() => { e.target.textContent = 'Copied'; setTimeout(() => e.target.textContent = 'Copy summary', 1500); });
         track('estimate_copy', { weeks_hi: hi });
       });
+      $('#shareEst').addEventListener('click', (e) => {
+        navigator.clipboard?.writeText(shareUrl()).then(() => { e.target.textContent = 'Link copied'; setTimeout(() => e.target.textContent = 'Copy link', 1500); });
+        track('estimate_share', { weeks_hi: hi });
+      });
     };
-    est.addEventListener('change', calc);
-    est.addEventListener('input', calc);
+    est.addEventListener('change', () => { touched = true; calc(); });
+    est.addEventListener('input', () => { touched = true; calc(); });
     calc();
   }
 
@@ -207,4 +225,125 @@
     });
     show('hub');
   }
+})();
+
+/* ================= 4. Workflow or script? decision helper ================= */
+(function () {
+  const $ = (s, r = document) => r.querySelector(s);
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const track = (n, p) => { if (typeof gtag === 'function') gtag('event', n, p); };
+  const box = $('#decide');
+  if (!box) return;
+  // Each option scores w (SuiteFlow workflow), s (SuiteScript), n (native: saved search, formula, configuration) and gives a reason.
+  const Q = [
+    ['What starts it?', [
+      ['A record is created or edited', { w: 1, s: 1 }, 'Record events suit both a workflow and a User Event script'],
+      ['A user clicks a button on a record', { w: 1, s: 1 }, 'Buttons can be workflow actions or a Client / Suitelet script'],
+      ['A schedule, or a batch of many records', { s: 2 }, 'Scheduled and Map/Reduce scripts are built for batches'],
+      ['A value needs to show on a form or report', { n: 2 }, 'Display needs rarely need automation at all']
+    ]],
+    ['What has to happen?', [
+      ['Set fields, send an email, change a status or route an approval', { w: 2 }, 'These are the actions SuiteFlow does best, with no code'],
+      ['Create or update several related records, or loop over lines', { s: 2 }, 'Workflows act on one record; loops and related records need script'],
+      ['Call another system, or read and write files', { s: 3 }, 'Only SuiteScript can reach outside NetSuite'],
+      ['Only calculate or display something', { n: 2 }, 'A formula field, sourcing or a saved search column may be enough']
+    ]],
+    ['How many records in one go?', [
+      ['One at a time', { w: 1 }, 'Single-record work keeps a workflow simple'],
+      ['Tens', { w: 1, s: 1 }, 'Still fine for either, watch governance in scripts'],
+      ['Hundreds or thousands', { s: 2 }, 'Volume calls for a Map/Reduce with per-key limits']
+    ]],
+    ['How complex is the logic?', [
+      ['A few conditions on the record\'s own fields', { w: 2 }, 'Workflow conditions handle this without code'],
+      ['Lookups on other records, maths, date rules', { s: 2 }, 'Lookups and calculations are clearer and cheaper in script'],
+      ['It can be written as a formula or search criteria', { n: 2 }, 'Native formulas and searches need no maintenance']
+    ]],
+    ['Who will maintain it?', [
+      ['An admin, without code', { w: 2, n: 1 }, 'Workflows and searches can be changed by an admin'],
+      ['A developer is available', { s: 1 }, 'Script is fine when someone can read it later'],
+      ['Both', { w: 1, s: 1 }, 'Either works; pick on the other answers']
+    ]],
+    ['How often will the rules change?', [
+      ['Often, driven by business users', { w: 2 }, 'Workflow changes ship without a deployment'],
+      ['Rarely, once it works', { s: 1 }, 'Stable rules are a good fit for versioned, SDF-managed code'],
+      ['They are standard NetSuite behaviour we need switched on', { n: 2 }, 'Check preferences and features before building anything']
+    ]]
+  ];
+  const form = $('#decideForm');
+  form.innerHTML = Q.map((q, qi) => `<div class="field"><span class="lbl">${qi + 1}. ${esc(q[0])}</span><div class="checks opts">${q[1].map((o, oi) => `<label class="check"><input type="radio" name="q${qi}" value="${oi}"${oi === 0 ? ' checked' : ''}> ${esc(o[0])}</label>`).join('')}</div></div>`).join('');
+  const out = $('#decideOut');
+  const NAMES = { w: 'SuiteFlow workflow', s: 'SuiteScript', n: 'Native NetSuite (search, formula or configuration)' };
+  const GUIDE = {
+    w: ['Model it as states and transitions; one state per business status.', 'Keep actions to the current record. The moment you need another record or a loop, add a Workflow Action script for that one step.', 'Name every state and transition so an admin can read the diagram a year from now.'],
+    s: ['Record events: User Event (afterSubmit for side effects, beforeSubmit for validation).', 'Batches or anything over a few hundred records: Map/Reduce, keyed by record id.', 'Buttons and screens: Client script for the form, Suitelet for a page of its own.', 'Manage it in an SDF project, log usage, and keep each script restartable.'],
+    n: ['Try a formula field, field sourcing or a custom segment first.', 'Saved searches with summary types and formulas cover most reporting asks.', 'Look in Setup › Company › Enable Features and Accounting Preferences; the behaviour is often already there.']
+  };
+  const calc = () => {
+    const score = { w: 0, s: 0, n: 0 }, reasons = [];
+    Q.forEach((q, qi) => {
+      const o = q[1][+form.querySelector(`input[name="q${qi}"]:checked`).value];
+      Object.entries(o[1]).forEach(([k, v]) => score[k] += v);
+      reasons.push([o[2], Object.keys(o[1])]);
+    });
+    const order = Object.keys(score).sort((a, b) => score[b] - score[a]);
+    const top = order[0], second = order[1];
+    const close = score[top] - score[second] <= 1 && score[second] > 0;
+    let title = NAMES[top], note = '';
+    if (close && top === 'w' && second === 's' || close && top === 's' && second === 'w') { title = 'Workflow with a Workflow Action script'; note = 'The answers are split: keep the states, emails and approvals in SuiteFlow, and write only the hard step as a Workflow Action script the workflow calls.'; }
+    else if (close && (top === 'n' || second === 'n')) { note = `Check the native option first. If a formula, sourcing or a preference covers it, nothing needs to be built; otherwise go with ${NAMES[top === 'n' ? second : top]}.`; }
+    const summary = `Recommendation: ${title}. ` + reasons.map(r => r[0]).join('; ') + '.';
+    out.innerHTML = `
+      <h3>Recommendation</h3>
+      <p class="big" style="font-size:1.5rem">${esc(title)}</p>
+      <div class="meter ok"><i style="width:${Math.round(100 * score[top] / Math.max(1, score.w + score.s + score.n))}%"></i></div>
+      <p class="verdict ok">Workflow ${score.w} · Script ${score.s} · Native ${score.n}</p>
+      ${note ? `<p class="advice">${esc(note)}</p>` : ''}
+      <ul class="lines">${reasons.map(r => `<li><span>${esc(r[0])}</span><span>${r[1].map(k => k === 'w' ? 'WF' : k === 's' ? 'JS' : 'NS').join('/')}</span></li>`).join('')}</ul>
+      <h3 style="margin-top:16px">How I would build it</h3>
+      <ul class="guide">${GUIDE[top].map(g => `<li>${esc(g)}</li>`).join('')}</ul>
+      <div class="hero-actions"><a class="btn btn-primary" href="/ask.html">Ask about your case</a><button class="btn btn-ghost" type="button" id="copyDecide">Copy summary</button></div>
+      <p class="note">A rule of thumb from projects, not a verdict. Governance, licensing of the people who maintain it, and what already exists in the account all change the answer.</p>`;
+    $('#copyDecide').addEventListener('click', (e) => {
+      navigator.clipboard?.writeText(summary).then(() => { e.target.textContent = 'Copied'; setTimeout(() => e.target.textContent = 'Copy summary', 1500); });
+      track('decide_copy', { result: title });
+    });
+  };
+  form.addEventListener('change', calc);
+  calc();
+})();
+
+/* ================= 5. NetSuite glossary (terms come from search.js so Cmd+K finds them too) ================= */
+(function () {
+  const $ = (s, r = document) => r.querySelector(s);
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const track = (n, p) => { if (typeof gtag === 'function') gtag('event', n, p); };
+  const box = $('#glossary');
+  if (!box || !window.GLOSSARY) return;
+  const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  const terms = window.GLOSSARY.map(t => ({ term: t[0], def: t[1], id: 'g-' + slug(t[0]) })).sort((a, b) => a.term.localeCompare(b.term));
+  const list = $('#glossList'), q = $('#glossQ'), az = $('#glossAZ'), count = $('#glossCount');
+  const letters = [...new Set(terms.map(t => t.term[0].toUpperCase()))];
+  az.innerHTML = `<button type="button" data-l="" aria-pressed="true">All</button>` + letters.map(l => `<button type="button" data-l="${l}" aria-pressed="false">${l}</button>`).join('');
+  let letter = '';
+  const link = (text) => esc(text).replace(/\[\[(.+?)\]\]/g, (m, t) => `<a href="#g-${slug(t)}" data-go>${esc(t)}</a>`);
+  const render = () => {
+    const needle = q.value.trim().toLowerCase();
+    const hits = terms.filter(t => (!letter || t.term[0].toUpperCase() === letter) && (!needle || (t.term + ' ' + t.def).toLowerCase().includes(needle)));
+    list.innerHTML = hits.length ? hits.map(t => `<div class="gterm" id="${t.id}"><dt>${esc(t.term)}</dt><dd>${link(t.def)}</dd></div>`).join('') : '<p class="palette-empty">No term matches. Try "governance", "SDF" or "sourcing".</p>';
+    count.textContent = `${hits.length} of ${terms.length}`;
+  };
+  q.addEventListener('input', () => { letter = ''; az.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.dataset.l === '')); render(); if (q.value.length > 2) track('glossary_search', { query: q.value }); });
+  az.addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; letter = b.dataset.l; q.value = ''; az.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b)); render(); });
+  const jump = (id) => {
+    letter = ''; q.value = ''; az.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.dataset.l === '')); render();
+    const el = document.getElementById(id);
+    if (!el) return;
+    list.querySelectorAll('.gterm.hit').forEach(x => x.classList.remove('hit'));
+    el.classList.add('hit');
+    el.scrollIntoView({ block: 'center' });
+  };
+  list.addEventListener('click', (e) => { const a = e.target.closest('a[data-go]'); if (!a) return; e.preventDefault(); history.replaceState(null, '', a.getAttribute('href')); jump(a.getAttribute('href').slice(1)); });
+  render();
+  if (location.hash.startsWith('#g-')) setTimeout(() => jump(location.hash.slice(1)), 50);
+  window.addEventListener('hashchange', () => { if (location.hash.startsWith('#g-')) jump(location.hash.slice(1)); });
 })();

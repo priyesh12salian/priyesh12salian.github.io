@@ -5,8 +5,22 @@
     <link>https://priyesh12salian.github.io/notes.html</link>
     <description>Short, practical write-ups on NetSuite, SuiteScript, integrations, and AI automation.</description>
     <language>en</language>
-    <lastBuildDate>Tue, 17 Nov 2026 09:00:00 +0530</lastBuildDate>
+    <lastBuildDate>Mon, 23 Nov 2026 09:00:00 +0530</lastBuildDate>
     <atom:link href="https://priyesh12salian.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>What a manufacturing rollout taught me about NetSuite work orders</title>
+      <link>https://priyesh12salian.github.io/notes/manufacturing-work-orders-lessons.html</link>
+      <guid isPermaLink="true">https://priyesh12salian.github.io/notes/manufacturing-work-orders-lessons.html</guid>
+      <pubDate>Mon, 23 Nov 2026 09:00:00 +0530</pubDate>
+      <description>Lessons from bringing work orders, routings, BOMs and costing into NetSuite for a discrete manufacturer: what to build first and what breaks costing later.</description>
+    </item>
+    <item>
+      <title>Five governance mistakes that take down a SuiteScript</title>
+      <link>https://priyesh12salian.github.io/notes/suitescript-governance-mistakes.html</link>
+      <guid isPermaLink="true">https://priyesh12salian.github.io/notes/suitescript-governance-mistakes.html</guid>
+      <pubDate>Sat, 21 Nov 2026 09:00:00 +0530</pubDate>
+      <description>The usage-limit mistakes I see most often in SuiteScript, why each one fails only after go-live, and the fix for each.</description>
+    </item>
     <item>
       <title>Connecting AI agents to NetSuite with MCP</title>
       <link>https://priyesh12salian.github.io/notes/ai-agents-netsuite-mcp.html</link>

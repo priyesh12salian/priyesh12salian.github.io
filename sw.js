@@ -1,6 +1,6 @@
 // Service worker: makes the site installable and readable offline.
 // Network first for everything so a deploy is picked up on the next load; cached copy as fallback.
-const VERSION = 'ps-2026-11-20';
+const VERSION = 'ps-2026-11-23';
 const CORE = ['/', '/index.html', '/css/style.css', '/js/main.js', '/js/search.js', '/offline.html', '/assets/images/favicon.svg', '/manifest.webmanifest'];
 
 self.addEventListener('install', (e) => {

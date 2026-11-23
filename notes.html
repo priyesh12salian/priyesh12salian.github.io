@@ -37,6 +37,9 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
   <link rel="stylesheet" href="css/style.css">
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://priyesh12salian.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Notes", "item": "https://priyesh12salian.github.io/notes.html"}]}
+  </script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -72,6 +75,20 @@
     </div>
     <p class="section-intro reveal">Short, practical write-ups from NetSuite work: things that took a while to figure out and are worth writing down.</p>
     <div class="notes-list">
+      <a class="note-card reveal" href="notes/manufacturing-work-orders-lessons.html">
+        <p class="note-meta"><time datetime="2026-11-23">23 Nov 2026</time> · 3 min read</p>
+        <h3>What a manufacturing rollout taught me about NetSuite work orders</h3>
+        <p>Why the BOM matters more than the work order, how routings decide what you can measure, when to issue material, and why costing only works once the inputs are honest.</p>
+        <ul class="tags"><li>Manufacturing</li><li>Work Orders</li><li>Costing</li></ul>
+        <span class="card-hint" aria-hidden="true">Read note <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+      <a class="note-card reveal" href="notes/suitescript-governance-mistakes.html">
+        <p class="note-meta"><time datetime="2026-11-21">21 Nov 2026</time> · 4 min read</p>
+        <h3>Five governance mistakes that take down a SuiteScript</h3>
+        <p>The usage-limit patterns that pass UAT and fail at month end: searches in loops, loads for one field, batch work in a User Event, and two more, each with its fix.</p>
+        <ul class="tags"><li>SuiteScript</li><li>Governance</li><li>Map/Reduce</li></ul>
+        <span class="card-hint" aria-hidden="true">Read note <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
       <a class="note-card reveal" href="notes/ai-agents-netsuite-mcp.html">
         <p class="note-meta"><time datetime="2026-11-17">17 Nov 2026</time> · 3 min read</p>
         <h3>Connecting AI agents to NetSuite with MCP</h3>
@@ -80,6 +97,7 @@
         <span class="card-hint" aria-hidden="true">Read note <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </a>
     </div>
+    <div data-newsletter></div>
   </section>
 </main>
 
@@ -87,11 +105,11 @@
 
 <footer>
   <nav class="foot-nav" aria-label="More pages">
-    <a href="/notes.html">Notes</a><a href="/snippets.html">Snippets</a><a href="/tools.html">Tools</a><a href="/now.html">Now</a><a href="/ask.html">Ask me anything</a><a href="/feed.xml">RSS</a><a href="/assets/docs/Priyesh-Salian-Resume.pdf" download data-resume>Résumé</a>
+    <a href="/notes.html">Notes</a><a href="/snippets.html">Snippets</a><a href="/tools.html">Tools</a><a href="/now.html">Now</a><a href="/uses.html">Uses</a><a href="/changelog.html">Changelog</a><a href="/ask.html">Ask me anything</a><a href="/feed.xml">RSS</a><a href="/assets/docs/Priyesh-Salian-Resume.pdf" download data-resume>Résumé</a>
   </nav>
   <p>© <span id="year"></span> Priyesh Salian · Built with HTML, CSS &amp; JS</p>
 </footer>
-<script src="js/main.js"></script>
-<script src="js/search.js"></script>
+<script src="js/main.js" defer></script>
+<script src="js/search.js" defer></script>
 </body>
 </html>

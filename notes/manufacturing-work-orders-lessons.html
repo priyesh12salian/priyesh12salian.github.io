@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What a manufacturing rollout taught me about NetSuite work orders — Priyesh Salian</title>
+  <meta name="description" content="Lessons from bringing work orders, routings, BOMs and costing into NetSuite for a discrete manufacturer: what to build first and what breaks costing later.">
+  <link rel="canonical" href="https://priyesh12salian.github.io/notes/manufacturing-work-orders-lessons.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Priyesh Salian">
+  <meta property="og:title" content="What a manufacturing rollout taught me about NetSuite work orders">
+  <meta property="og:description" content="Lessons from bringing work orders, routings, BOMs and costing into NetSuite for a discrete manufacturer: what to build first and what breaks costing later.">
+  <meta property="og:url" content="https://priyesh12salian.github.io/notes/manufacturing-work-orders-lessons.html">
+  <meta property="og:image" content="https://priyesh12salian.github.io/assets/images/og/note-manufacturing-work-orders-lessons.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What a manufacturing rollout taught me about NetSuite work orders — Priyesh Salian">
+  <meta name="twitter:description" content="Lessons from bringing work orders, routings, BOMs and costing into NetSuite for a discrete manufacturer: what to build first and what breaks costing later.">
+  <meta name="twitter:image" content="https://priyesh12salian.github.io/assets/images/og/note-manufacturing-work-orders-lessons.png">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="alternate" type="application/rss+xml" title="Priyesh Salian — Notes" href="/feed.xml">
+  <script>(function(){try{var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
+  <!-- Google Analytics 4 -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-YEP2NZD2GF');
+    // Load the Analytics library after the page has painted so it never delays rendering
+    window.addEventListener('load', function () {
+      var s = document.createElement('script'); s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YEP2NZD2GF'; document.head.appendChild(s);
+    });
+  </script>
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+  <link rel="stylesheet" href="../css/style.css">
+  <meta property="article:published_time" content="2026-11-23">
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "Article", "headline": "What a manufacturing rollout taught me about NetSuite work orders", "datePublished": "2026-11-23", "dateModified": "2026-11-23", "author": {"@type": "Person", "name": "Priyesh Salian", "url": "https://priyesh12salian.github.io/"}, "mainEntityOfPage": "https://priyesh12salian.github.io/notes/manufacturing-work-orders-lessons.html", "image": "https://priyesh12salian.github.io/assets/images/og/note-manufacturing-work-orders-lessons.png", "description": "Lessons from bringing work orders, routings, BOMs and costing into NetSuite for a discrete manufacturer: what to build first and what breaks costing later."}
+  </script>
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://priyesh12salian.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Notes", "item": "https://priyesh12salian.github.io/notes.html"}, {"@type": "ListItem", "position": 3, "name": "What a manufacturing rollout taught me about NetSuite work orders", "item": "https://priyesh12salian.github.io/notes/manufacturing-work-orders-lessons.html"}]}
+  </script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="nav scrolled" id="nav">
+  <a class="logo" href="/">PS<span>.</span></a>
+  <nav class="nav-links" id="navLinks">
+    <a href="/#about">About</a>
+    <a href="/#experience">Experience</a>
+    <a href="/#skills">Skills</a>
+    <a href="/#work">Case Studies</a>
+    <a href="/#projects">Projects</a>
+    <a href="/#services">Services</a>
+    <a href="/notes.html" class="active">Notes</a>
+    <a href="/snippets.html">Snippets</a>
+    <a href="/tools.html">Tools</a>
+    <a href="/#contact" class="nav-cta">Contact</a>
+    <span class="nav-ink" id="navInk" aria-hidden="true"></span>
+  </nav>
+  <div class="nav-right">
+    <button class="theme-btn" id="themeBtn" aria-label="Switch theme" title="Switch theme">
+      <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4l1.4 1.4M4.9 19.1l1.4-1.4m11.4-11.4l1.4-1.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+  </div>
+  <span class="progress" id="progress" aria-hidden="true"></span>
+</header>
+
+<main id="main" class="page">
+  <div class="section article-wrap">
+  <article class="article">
+    <p class="crumbs"><a href="/notes.html">Notes</a> <span>/</span> Manufacturing</p>
+    <p class="note-meta"><time datetime="2026-11-23">23 Nov 2026</time> · <span data-readtime>3 min read</span></p>
+    <h1>What a manufacturing rollout taught me about NetSuite work orders</h1>
+    <p class="standfirst">A discrete manufacturer ran production in spreadsheets and reconciled costs by hand every month end. Moving that into NetSuite work orders taught me where the module is unforgiving, and which decisions made early decide whether costing ever becomes trustworthy.</p>
+
+    <h2>Start with the BOM, not the work order</h2>
+    <p>The first instinct is to configure work orders, because that is what the shop floor sees. The work order is the least important object in the chain. It only consumes what the bill of materials and the routing say it should, so every mistake upstream appears on every build downstream.</p>
+    <p>We spent the first two weeks on assembly items and multi-level BOMs: which components were real, which were phantom sub-assemblies, and which quantities had been padded over the years to hide scrap. Loading the spreadsheets as they were would have been faster and would have made every cost report wrong from day one.</p>
+
+    <h2>Routings decide what you can measure</h2>
+    <p>A routing is a list of operations on work centres with setup and run times. It is tempting to create one operation called "Build" and move on. Then the first question from finance is why labour cost per unit is the same on a two-minute part and a two-hour assembly, and there is no answer, because the routing never separated them.</p>
+    <p>The rule we settled on: one operation per point where somebody could reasonably be asked "is this step done yet?". Fewer operations than that and you lose visibility; more and operators stop recording them. Work centres map to physical areas, not to people, so the routing survives a staffing change.</p>
+
+    <h2>Material issue: when, not whether</h2>
+    <p>NetSuite can issue components to a work order when it is released, or as each operation completes. Both are correct. Choosing the wrong one for the shop floor is what breaks inventory accuracy.</p>
+    <p>For this client components were kitted before a build started, so issuing on release matched what physically happened. A SuiteScript on the work order release posts the issue and leaves nothing for the operator to remember. Where materials are pulled during the build, backflushing on completion is the honest choice. The point is that the system should record the moment stock actually left the shelf, because that is the moment finance will try to reconcile later.</p>
+
+    <h2>Completions are the data finance wants</h2>
+    <p>Operators record completions: how many units finished an operation, how many were scrapped. This is the only place actual quantities and actual time enter the system, so it has to be fast. A screen that takes a minute will be filled in at the end of the shift from memory, and the numbers will be smooth and wrong.</p>
+    <p>We cut the completion form down to the fields that change, defaulted everything else from the routing, and validated server-side so a bad entry is rejected on the spot rather than discovered at month end. Completion tracking in SuiteScript then posts the WIP movement without anyone pressing a second button.</p>
+
+    <h2>Costing only works if the three steps above are honest</h2>
+    <p>Planned versus actual cost per build falls out of NetSuite automatically once BOM, routing and completions are reliable. There is no separate costing project. The SuiteAnalytics dashboards and the Power BI views over ODBC were the smallest part of the work, and they went live last because they would only have shown how wrong the inputs were.</p>
+    <p>Month-end production reconciliation disappeared, not because of a reconciliation tool, but because production and inventory were finally the same transactions in the same system.</p>
+
+    <h2>What I would do again</h2>
+    <ul>
+      <li><strong>Clean the BOMs with the people who build the product</strong>, before anything is loaded. They know which quantities are fiction.</li>
+      <li><strong>Pick the material issue moment to match the floor</strong>, and automate it so nobody has to remember.</li>
+      <li><strong>Make completion entry a thirty-second job.</strong> Everything downstream depends on it being done at the time.</li>
+      <li><strong>Hold the dashboards back</strong> until two weeks of real builds have gone through. The first dashboard a plant manager sees should be one they can trust.</li>
+    </ul>
+    <p>Standard NetSuite covered nearly all of it. The scripts were small and sat at the moments where a person would otherwise have had to remember a step. That balance, standard where it fits and code only at the seams, is the one I now aim for on every module rollout.</p>
+
+    <div class="article-foot">
+      <a href="/notes.html" class="btn btn-ghost">← All notes</a>
+      <a href="/#contact" class="btn btn-primary">Talk about a project</a>
+    </div>
+    <div data-newsletter></div>
+  </article>
+  <aside class="toc" id="toc" aria-label="Table of contents" hidden></aside>
+  </div>
+</main>
+
+<button class="to-top" id="toTop" aria-label="Back to top"><svg viewBox="0 0 24 24"><path d="M12 19V5m0 0l-6 6m6-6l6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+
+<footer>
+  <nav class="foot-nav" aria-label="More pages">
+    <a href="/notes.html">Notes</a><a href="/snippets.html">Snippets</a><a href="/tools.html">Tools</a><a href="/now.html">Now</a><a href="/uses.html">Uses</a><a href="/changelog.html">Changelog</a><a href="/ask.html">Ask me anything</a><a href="/feed.xml">RSS</a><a href="/assets/docs/Priyesh-Salian-Resume.pdf" download data-resume>Résumé</a>
+  </nav>
+  <p>© <span id="year"></span> Priyesh Salian · Built with HTML, CSS &amp; JS</p>
+</footer>
+<script src="../js/main.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/article.js" defer></script>
+</body>
+</html>

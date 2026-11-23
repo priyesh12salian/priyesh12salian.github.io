@@ -187,7 +187,7 @@ if (toTop) {
 
 // Latest public repos from GitHub (hidden if the request fails or nothing to show)
 const ghGrid = document.getElementById('ghGrid');
-if (ghGrid) {
+const loadRepos = () => {
   fetch('https://api.github.com/users/priyesh12salian/repos?sort=pushed&per_page=12')
     .then(r => r.ok ? r.json() : Promise.reject(r.status))
     .then(repos => {
@@ -204,7 +204,7 @@ if (ghGrid) {
       strip.classList.add('visible');
     })
     .catch(() => {});
-}
+};
 
 document.querySelectorAll('a[data-book]').forEach(a => a.addEventListener('click', () => track('book_call', { target: a.getAttribute('href') })));
 
@@ -237,7 +237,7 @@ if (caseFilter) {
 
 // GitHub contribution heatmap (public contributions, last 12 months; hidden if the request fails)
 const ghHeat = document.getElementById('ghHeat');
-if (ghHeat) {
+const loadHeat = () => {
   fetch('https://github-contributions-api.jogruber.de/v4/priyesh12salian?y=last')
     .then(r => r.ok ? r.json() : Promise.reject(r.status))
     .then(d => {
@@ -263,9 +263,35 @@ if (ghHeat) {
       ghHeat.classList.add('visible');
     })
     .catch(() => {});
+};
+// Both GitHub requests wait until the Projects section is about to scroll into view, so they never compete with the first paint
+const projects = document.getElementById('projects');
+if (projects && (ghGrid || ghHeat)) {
+  const start = () => { if (ghGrid) loadRepos(); if (ghHeat) loadHeat(); };
+  if ('IntersectionObserver' in window) {
+    const near = new IntersectionObserver((entries) => { if (entries.some(e => e.isIntersecting)) { near.disconnect(); start(); } }, { rootMargin: '800px 0px' });
+    near.observe(projects);
+  } else start();
 }
 
 // Installable site: register the service worker on the live domain only
 if ('serviceWorker' in navigator && location.protocol === 'https:') {
   window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js').catch(() => {}));
+}
+
+// Email subscription box for new notes (Buttondown, free tier). Set the username once here; boxes stay hidden until then.
+const BUTTONDOWN = 'USERNAME';
+if (BUTTONDOWN && BUTTONDOWN !== 'USERNAME') {
+  document.querySelectorAll('[data-newsletter]').forEach(host => {
+    host.innerHTML = `<section class="newsletter" aria-labelledby="nlTitle">
+      <h3 id="nlTitle">New notes by email</h3>
+      <p>One short email when a note is published, nothing else. Unsubscribe with one click.</p>
+      <form action="https://buttondown.com/api/emails/embed-subscribe/${BUTTONDOWN}" method="post" target="_blank">
+        <input type="email" name="email" placeholder="you@company.com" required aria-label="Your email address" autocomplete="email">
+        <button class="btn btn-primary" type="submit">Subscribe</button>
+      </form>
+      <p class="note">Delivered by Buttondown. Your address is used for this list only.</p>
+    </section>`;
+    host.querySelector('form').addEventListener('submit', () => track('newsletter_subscribe', { page: location.pathname }));
+  });
 }

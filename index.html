@@ -23,6 +23,7 @@
   <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
   <link rel="manifest" href="/manifest.webmanifest">
   <link rel="alternate" type="application/rss+xml" title="Priyesh Salian — Notes" href="/feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="Priyesh Salian — Site changelog" href="/changelog.xml">
   <script>(function(){try{var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
   <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
   <!-- Google Analytics 4 -->
@@ -67,6 +68,9 @@
     ]
   }
   </script>
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do you usually work with clients?", "acceptedAnswer": {"@type": "Answer", "text": "Two ways. Fixed-scope projects for a clearly defined build such as an integration, a module rollout, or a set of scripts. Monthly retainers for ongoing support, enhancements, and advisory. Both are remote from Pune, India."}}, {"@type": "Question", "name": "Which time zones do you cover?", "acceptedAnswer": {"@type": "Answer", "text": "I work in IST (UTC+5:30) with regular overlap for European hours and US mornings. For go-lives and cutovers I align to the client's hours."}}, {"@type": "Question", "name": "What does a typical project look like?", "acceptedAnswer": {"@type": "Answer", "text": "A discovery call, then a written scope and estimate. I build in your sandbox with weekly demos, your team runs UAT, and I deploy through SDF so everything is versioned. A short hypercare period follows go-live."}}, {"@type": "Question", "name": "Do you work alongside in-house admins or a NetSuite partner?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, and often. I hand over documented, SDF-managed code and walk your team through it, so nothing depends on me staying involved."}}, {"@type": "Question", "name": "What do you need to get started?", "acceptedAnswer": {"@type": "Answer", "text": "A short description of the problem, access to a sandbox account, and one person on your side who can make decisions."}}, {"@type": "Question", "name": "Do you take on AI work in NetSuite?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Document-reading agents for invoices and purchase orders, and MCP-connected assistants that act inside NetSuite. I start every one read-only with a human approving exceptions, and widen its permissions only once the team trusts it."}}]}
+  </script>
 </head>
 <body>
 <a class="skip-link" href="#about">Skip to content</a>
@@ -103,19 +107,19 @@
 
   <!-- ================= HERO ================= -->
   <section class="hero">
-    <p class="kicker reveal"><span class="dot"></span> Sr. Solution Strategist · Pune, India <span class="avail" id="avail">Open to new projects</span></p>
-    <h1 class="reveal">Priyesh <span class="accent">Salian</span></h1>
-    <p class="title-line reveal" id="typed" data-text="NetSuite Techno-Functional Consultant · 3× Oracle NetSuite Certified"><span class="sr-only">NetSuite Techno-Functional Consultant · 3× Oracle NetSuite Certified</span><span class="typed-text" aria-hidden="true">NetSuite Techno-Functional Consultant · 3× Oracle NetSuite Certified</span><span class="caret" aria-hidden="true"></span></p>
-    <p class="lead reveal">
+    <p class="kicker hero-in"><span class="dot"></span> Sr. Solution Strategist · Pune, India <span class="avail" id="avail">Open to new projects</span></p>
+    <h1 class="hero-in">Priyesh <span class="accent">Salian</span></h1>
+    <p class="title-line hero-in" id="typed" data-text="NetSuite Techno-Functional Consultant · 3× Oracle NetSuite Certified"><span class="sr-only">NetSuite Techno-Functional Consultant · 3× Oracle NetSuite Certified</span><span class="typed-text" aria-hidden="true">NetSuite Techno-Functional Consultant · 3× Oracle NetSuite Certified</span><span class="caret" aria-hidden="true"></span></p>
+    <p class="lead hero-in">
       8+ years turning NetSuite requirements into working solutions —
       SuiteScript, integrations, reporting, and now AI agents that do the busywork.
     </p>
-    <div class="hero-actions reveal">
+    <div class="hero-actions hero-in">
       <a href="#work" class="btn btn-primary">View case studies</a>
       <a href="#contact" class="btn btn-ghost">Get in touch</a>
       <a href="assets/docs/Priyesh-Salian-Resume.pdf" class="btn btn-ghost" download data-resume><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Résumé (PDF)</a>
     </div>
-    <ul class="stats reveal">
+    <ul class="stats hero-in">
       <li><strong><span class="count" data-to="8">0</span>+</strong><span>Years in NetSuite</span></li>
       <li><strong><span class="count" data-to="3">0</span>×</strong><span>Oracle NetSuite certified</span></li>
       <li><strong><span class="count" data-to="4">0</span></strong><span>Roles, freelance to lead</span></li>
@@ -518,13 +522,13 @@
 
 <footer>
   <nav class="foot-nav" aria-label="More pages">
-    <a href="/notes.html">Notes</a><a href="/snippets.html">Snippets</a><a href="/tools.html">Tools</a><a href="/now.html">Now</a><a href="/ask.html">Ask me anything</a><a href="/feed.xml">RSS</a><a href="/assets/docs/Priyesh-Salian-Resume.pdf" download data-resume>Résumé</a>
+    <a href="/notes.html">Notes</a><a href="/snippets.html">Snippets</a><a href="/tools.html">Tools</a><a href="/now.html">Now</a><a href="/uses.html">Uses</a><a href="/changelog.html">Changelog</a><a href="/ask.html">Ask me anything</a><a href="/feed.xml">RSS</a><a href="/assets/docs/Priyesh-Salian-Resume.pdf" download data-resume>Résumé</a>
   </nav>
   <p>© <span id="year"></span> Priyesh Salian · Built with HTML, CSS &amp; JS</p>
 </footer>
 
-<script src="js/main.js"></script>
-<script src="js/search.js"></script>
+<script src="js/main.js" defer></script>
+<script src="js/search.js" defer></script>
 </body>
 </html>
 

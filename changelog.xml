@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Priyesh Salian — Site changelog</title>
+    <link>https://priyesh12salian.github.io/changelog.html</link>
+    <description>What changed on priyesh12salian.github.io.</description>
+    <language>en</language>
+    <lastBuildDate>Mon, 23 Nov 2026 09:00:00 +0530</lastBuildDate>
+    <atom:link href="https://priyesh12salian.github.io/changelog.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Site update, 23 Nov 2026</title>
+      <link>https://priyesh12salian.github.io/changelog.html#2026-11-23</link>
+      <guid isPermaLink="true">https://priyesh12salian.github.io/changelog.html#2026-11-23</guid>
+      <pubDate>Mon, 23 Nov 2026 09:00:00 +0530</pubDate>
+      <description>New Uses page and this changelog. Tools page: workflow or script? decision helper, a searchable NetSuite glossary, and estimator selections that live in the URL so an estimate can be shared as a link. Keyboard shortcuts on every page. Press ? to see them. Two new notes: five governance mistakes that take down a SuiteScript and what a manufacturing rollout taught me about work orders. Email subscription box for new notes, and richer structured data (FAQ, breadcrumbs, articles) for search engines. Home page loads faster: the hero no longer waits for JavaScript, and the GitHub sections load only when scrolled into view.</description>
+    </item>
+    <item>
+      <title>Site update, 20 Nov 2026</title>
+      <link>https://priyesh12salian.github.io/changelog.html#2026-11-20</link>
+      <guid isPermaLink="true">https://priyesh12salian.github.io/changelog.html#2026-11-20</guid>
+      <pubDate>Fri, 20 Nov 2026 09:00:00 +0530</pubDate>
+      <description>Tools page with a project scope estimator, a SuiteScript governance calculator and an integration map explorer. Site search: ⌘K / Ctrl K or / on any page. Now page and the Ask me anything board. A share preview image for every page, a GitHub contribution heatmap, and filters above the case studies. Notes get a table of contents, reading time and a progress bar. The site can be installed on a phone and read offline. Fixed the phone menu, which had been clipped by the header since October.</description>
+    </item>
+    <item>
+      <title>Site update, 18 Nov 2026</title>
+      <link>https://priyesh12salian.github.io/changelog.html#2026-11-18</link>
+      <guid isPermaLink="true">https://priyesh12salian.github.io/changelog.html#2026-11-18</guid>
+      <pubDate>Wed, 18 Nov 2026 09:00:00 +0530</pubDate>
+      <description>Each case study has its own page with a scroll-driven architecture diagram. Comments on case studies through GitHub Discussions.</description>
+    </item>
+    <item>
+      <title>Site update, 17 Nov 2026</title>
+      <link>https://priyesh12salian.github.io/changelog.html#2026-11-17</link>
+      <guid isPermaLink="true">https://priyesh12salian.github.io/changelog.html#2026-11-17</guid>
+      <pubDate>Tue, 17 Nov 2026 09:00:00 +0530</pubDate>
+      <description>Dark mode, an FAQ on how I work, the Snippets page, an RSS feed, the latest-repos strip, an availability badge and print styles. Services section, downloadable résumé, and Notes with the first article on AI agents and MCP. Lighthouse pass: non-blocking fonts, deferred analytics, ARIA fixes.</description>
+    </item>
+    <item>
+      <title>Site update, 26 Oct 2026</title>
+      <link>https://priyesh12salian.github.io/changelog.html#2026-10-26</link>
+      <guid isPermaLink="true">https://priyesh12salian.github.io/changelog.html#2026-10-26</guid>
+      <pubDate>Mon, 26 Oct 2026 09:00:00 +0530</pubDate>
+      <description>Motion pass: typed title, scroll progress, sliding nav underline, staggered cards and a timeline that draws itself. Compact cards that open a popup for experience, skills, case studies and projects.</description>
+    </item>
+    <item>
+      <title>Site update, 23 Oct 2026</title>
+      <link>https://priyesh12salian.github.io/changelog.html#2026-10-23</link>
+      <guid isPermaLink="true">https://priyesh12salian.github.io/changelog.html#2026-10-23</guid>
+      <pubDate>Fri, 23 Oct 2026 09:00:00 +0530</pubDate>
+      <description>Rebuilt from the LinkedIn profile with a light theme, four case studies with diagrams, Google Analytics and SEO basics.</description>
+    </item>
+    <item>
+      <title>Site update, 21 Oct 2026</title>
+      <link>https://priyesh12salian.github.io/changelog.html#2026-10-21</link>
+      <guid isPermaLink="true">https://priyesh12salian.github.io/changelog.html#2026-10-21</guid>
+      <pubDate>Wed, 21 Oct 2026 09:00:00 +0530</pubDate>
+      <description>First version of the site.</description>
+    </item>
+  </channel>
+</rss>

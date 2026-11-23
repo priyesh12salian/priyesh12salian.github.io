@@ -42,6 +42,9 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
   <link rel="stylesheet" href="css/style.css">
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://priyesh12salian.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://priyesh12salian.github.io/tools.html"}]}
+  </script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -74,8 +77,8 @@
     <div class="section-head reveal">
       <h2>Tools</h2>
     </div>
-    <p class="section-intro reveal">Three small tools that run in your browser. Nothing you enter leaves the page.</p>
-    <nav class="tool-nav reveal" aria-label="Tools on this page"><a href="#estimator">Scope estimator</a><a href="#governance">Governance calculator</a><a href="#map">Integration map</a></nav>
+    <p class="section-intro reveal">Small tools that run in your browser. Nothing you enter leaves the page.</p>
+    <nav class="tool-nav reveal" aria-label="Tools on this page"><a href="#estimator">Scope estimator</a><a href="#governance">Governance calculator</a><a href="#map">Integration map</a><a href="#decide">Workflow or script?</a><a href="#glossary">Glossary</a></nav>
 
     <article class="tool reveal" id="estimator">
       <div class="tool-head">
@@ -119,6 +122,30 @@
       </div>
     </article>
 
+    <article class="tool reveal" id="decide">
+      <div class="tool-head">
+        <h2>Workflow or script?</h2>
+        <p>Six questions about the automation you have in mind. The helper weighs the answers and suggests SuiteFlow, SuiteScript or a native feature, with the reasons and how I would build it.</p>
+      </div>
+      <div class="tool-grid">
+        <form id="decideForm" onsubmit="return false" aria-label="Decision questions"></form>
+        <div class="result" id="decideOut" aria-live="polite"></div>
+      </div>
+    </article>
+
+    <article class="tool reveal" id="glossary">
+      <div class="tool-head">
+        <h2>NetSuite glossary</h2>
+        <p>More than seventy terms that come up in NetSuite projects, each explained in a sentence or two. Type to filter, or pick a letter. Every term is also in the site search (<kbd>⌘K</kbd> / <kbd>Ctrl K</kbd>).</p>
+      </div>
+      <div class="gloss-bar">
+        <input type="search" id="glossQ" placeholder="Filter terms, e.g. governance" aria-label="Filter glossary terms" autocomplete="off">
+        <div class="gloss-az" id="glossAZ" role="group" aria-label="Filter by first letter"></div>
+        <span class="gloss-count" id="glossCount"></span>
+      </div>
+      <dl class="gloss" id="glossList"></dl>
+    </article>
+
     <p class="section-foot">Want one of these tailored to your account? <a class="inline-link" href="/#contact">Get in touch</a> or <a class="inline-link" href="/ask.html">ask on the board</a>.</p>
   </section>
 </main>
@@ -127,12 +154,12 @@
 
 <footer>
   <nav class="foot-nav" aria-label="More pages">
-    <a href="/notes.html">Notes</a><a href="/snippets.html">Snippets</a><a href="/tools.html">Tools</a><a href="/now.html">Now</a><a href="/ask.html">Ask me anything</a><a href="/feed.xml">RSS</a><a href="/assets/docs/Priyesh-Salian-Resume.pdf" download data-resume>Résumé</a>
+    <a href="/notes.html">Notes</a><a href="/snippets.html">Snippets</a><a href="/tools.html">Tools</a><a href="/now.html">Now</a><a href="/uses.html">Uses</a><a href="/changelog.html">Changelog</a><a href="/ask.html">Ask me anything</a><a href="/feed.xml">RSS</a><a href="/assets/docs/Priyesh-Salian-Resume.pdf" download data-resume>Résumé</a>
   </nav>
   <p>© <span id="year"></span> Priyesh Salian · Built with HTML, CSS &amp; JS</p>
 </footer>
-<script src="js/main.js"></script>
-<script src="js/search.js"></script>
-<script src="js/tools.js"></script>
+<script src="js/main.js" defer></script>
+<script src="js/search.js" defer></script>
+<script src="js/tools.js" defer></script>
 </body>
 </html>
