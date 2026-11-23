@@ -83,7 +83,7 @@
       <a role="tab" href="#glossary" id="tab-glossary" aria-controls="glossary" aria-selected="false" tabindex="-1">Glossary</a>
     </div>
 
-    <article class="tool" id="estimator" role="tabpanel" aria-labelledby="tab-estimator">
+    <section class="tool" id="estimator" role="tabpanel" aria-labelledby="tab-estimator">
       <div class="tool-head">
         <h2>Project scope estimator</h2>
         <p>Tick what your NetSuite project needs and get an indicative effort range in weeks, with the engagement model I would suggest. Copy the summary and send it with your first message.</p>
@@ -92,9 +92,9 @@
         <form id="estForm" onsubmit="return false" aria-label="Scope options"></form>
         <div class="result" id="estOut" aria-live="polite"></div>
       </div>
-    </article>
+    </section>
 
-    <article class="tool" id="governance" role="tabpanel" aria-labelledby="tab-governance" hidden>
+    <section class="tool" id="governance" role="tabpanel" aria-labelledby="tab-governance" hidden>
       <div class="tool-head">
         <h2>SuiteScript governance calculator</h2>
         <p>Enter what a script does per record and how many records it handles in one run. The calculator totals the governance units against the limit for that script type and tells you when to move the work to a Map/Reduce.</p>
@@ -112,9 +112,9 @@
         </div>
         <div class="result" id="govOut" aria-live="polite"></div>
       </div>
-    </article>
+    </section>
 
-    <article class="tool" id="map" role="tabpanel" aria-labelledby="tab-map" hidden>
+    <section class="tool" id="map" role="tabpanel" aria-labelledby="tab-map" hidden>
       <div class="tool-head">
         <h2>Integration map explorer</h2>
         <p>Every platform here has been connected to NetSuite in a project I delivered. Select one to see what moves, in which direction, and what runs on the NetSuite side.</p>
@@ -123,9 +123,9 @@
         <figure class="imap-fig" id="mapFig"></figure>
         <div class="imap-panel" id="mapPanel" aria-live="polite"></div>
       </div>
-    </article>
+    </section>
 
-    <article class="tool" id="decide" role="tabpanel" aria-labelledby="tab-decide" hidden>
+    <section class="tool" id="decide" role="tabpanel" aria-labelledby="tab-decide" hidden>
       <div class="tool-head">
         <h2>Workflow or script?</h2>
         <p>Six questions about the automation you have in mind. The helper weighs the answers and suggests SuiteFlow, SuiteScript or a native feature, with the reasons and how I would build it.</p>
@@ -134,9 +134,9 @@
         <form id="decideForm" onsubmit="return false" aria-label="Decision questions"></form>
         <div class="result" id="decideOut" aria-live="polite"></div>
       </div>
-    </article>
+    </section>
 
-    <article class="tool" id="glossary" role="tabpanel" aria-labelledby="tab-glossary" hidden>
+    <section class="tool" id="glossary" role="tabpanel" aria-labelledby="tab-glossary" hidden>
       <div class="tool-head">
         <h2>NetSuite glossary</h2>
         <p>More than seventy terms that come up in NetSuite projects, each explained in a sentence or two. Type to filter, or pick a letter. Every term is also in the site search (<kbd>⌘K</kbd> / <kbd>Ctrl K</kbd>).</p>
@@ -147,7 +147,7 @@
         <span class="gloss-count" id="glossCount"></span>
       </div>
       <dl class="gloss" id="glossList"></dl>
-    </article>
+    </section>
 
     <p class="section-foot">Want one of these tailored to your account? <a class="inline-link" href="/#contact">Get in touch</a> or <a class="inline-link" href="/ask.html">ask on the board</a>.</p>
   </section>
