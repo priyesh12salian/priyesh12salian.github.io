@@ -44,6 +44,8 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="preload" as="script" href="js/main.js">
+  <link rel="preload" as="script" href="js/search.js">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -527,8 +529,14 @@
   <p>© <span id="year"></span> Priyesh Salian · Built with HTML, CSS &amp; JS</p>
 </footer>
 
-<script src="js/main.js"></script>
-<script src="js/search.js"></script>
+<script>
+  // Page scripts start after the first frame has painted, so they never hold up the first paint on slow connections
+  (function () {
+    var load = function () { ['js/main.js', 'js/search.js'].forEach(function (src) { var s = document.createElement('script'); s.src = src; s.async = false; document.body.appendChild(s); }); };
+    var go = function () { requestAnimationFrame(function () { setTimeout(load, 0); }); };
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', go); else go();
+  })();
+</script>
 </body>
 </html>
 
