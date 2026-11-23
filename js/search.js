@@ -180,7 +180,7 @@
     const [path, hash] = x.u.split('#');
     if (hash && (path === here || path === '/' && here === '/')) {
       const target = document.getElementById(hash);
-      if (target) { target.scrollIntoView({ behavior: 'smooth' }); history.replaceState(null, '', '#' + hash); return; }
+      if (target) { history.replaceState(null, '', '#' + hash); if (window.showTool) { window.showTool(hash); if (hash.startsWith('g-')) window.dispatchEvent(new HashChangeEvent('hashchange')); } else target.scrollIntoView({ behavior: 'smooth' }); return; }
     }
     location.href = x.u;
   };

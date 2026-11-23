@@ -1,4 +1,55 @@
-// Tools page: project scope estimator, SuiteScript governance calculator, integration map explorer.
+// Tools page: project scope estimator, SuiteScript governance calculator, integration map explorer, decision helper, glossary.
+
+/* ================= 0. Tabs: one tool at a time, chosen by the URL hash ================= */
+(function () {
+  const bar = document.getElementById('toolTabs');
+  if (!bar) return;
+  const tabs = [...bar.querySelectorAll('[role="tab"]')];
+  const ids = tabs.map(t => t.getAttribute('aria-controls'));
+  const fromHash = (h) => { h = (h || '').replace(/^#/, ''); if (h.startsWith('g-')) return 'glossary'; return ids.includes(h) ? h : ids[0]; };
+  let current = null;
+  const show = (id, { scroll = false, focus = false } = {}) => {
+    tabs.forEach((t, i) => {
+      const on = ids[i] === id;
+      t.setAttribute('aria-selected', on);
+      t.tabIndex = on ? 0 : -1;
+      const panel = document.getElementById(ids[i]);
+      if (panel) panel.hidden = !on;
+    });
+    const changed = current !== id;
+    current = id;
+    const tab = tabs[ids.indexOf(id)];
+    if (bar.scrollWidth > bar.clientWidth) bar.scrollTo({ left: Math.max(0, tab.offsetLeft - 24), behavior: changed ? 'smooth' : 'auto' });
+    if (scroll) {
+      const top = bar.getBoundingClientRect().top + window.scrollY - 84;
+      if (Math.abs(window.scrollY - top) > 40 || changed) window.scrollTo({ top, behavior: 'auto' });
+    }
+    if (focus) tabs[ids.indexOf(id)].focus();
+    if (changed && typeof gtag === 'function') gtag('event', 'tool_tab', { tool: id });
+  };
+  bar.addEventListener('click', (e) => {
+    const t = e.target.closest('[role="tab"]');
+    if (!t) return;
+    e.preventDefault();
+    const id = t.getAttribute('aria-controls');
+    if (location.hash !== '#' + id) history.pushState(null, '', location.pathname + location.search + '#' + id);
+    show(id, { scroll: true });
+  });
+  bar.addEventListener('keydown', (e) => {
+    const i = ids.indexOf(current);
+    const next = e.key === 'ArrowRight' ? (i + 1) % ids.length : e.key === 'ArrowLeft' ? (i - 1 + ids.length) % ids.length : e.key === 'Home' ? 0 : e.key === 'End' ? ids.length - 1 : -1;
+    if (next < 0) return;
+    e.preventDefault();
+    history.replaceState(null, '', location.pathname + location.search + '#' + ids[next]);
+    show(ids[next], { focus: true });
+  });
+  const onHash = () => show(fromHash(location.hash), { scroll: true });
+  window.addEventListener('hashchange', onHash);
+  window.addEventListener('popstate', onHash);
+  // Initial tab: the hash wins (a shared estimate link, a glossary term, a search result), else the first tool
+  show(fromHash(location.hash), { scroll: !!location.hash && !location.hash.startsWith('#g-') });
+  window.showTool = (id) => show(fromHash(id), { scroll: true });
+})();
 (function () {
   const $ = (s, r = document) => r.querySelector(s);
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -335,6 +386,7 @@
   q.addEventListener('input', () => { letter = ''; az.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.dataset.l === '')); render(); if (q.value.length > 2) track('glossary_search', { query: q.value }); });
   az.addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; letter = b.dataset.l; q.value = ''; az.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b)); render(); });
   const jump = (id) => {
+    window.showTool?.('glossary');
     letter = ''; q.value = ''; az.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.dataset.l === '')); render();
     const el = document.getElementById(id);
     if (!el) return;

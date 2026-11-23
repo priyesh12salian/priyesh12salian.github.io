@@ -605,9 +605,13 @@ body.palette-open { overflow: hidden; }
 .tool-head { margin-bottom: 22px; }
 .tool-head h2 { font-size: 1.4rem; font-weight: 800; margin-bottom: 6px; }
 .tool-head p { color: var(--muted); max-width: 700px; }
-.tool-nav { display: flex; flex-wrap: wrap; gap: 8px; margin: -14px 0 30px; }
-.tool-nav a { font: 600 .84rem var(--font); padding: 8px 14px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--muted); transition: border-color .2s, color .2s; }
-.tool-nav a:hover { border-color: var(--accent); color: var(--accent); }
+.tabs { display: flex; gap: 4px; margin: -10px 0 28px; border-bottom: 2px solid var(--border); overflow-x: auto; scrollbar-width: none; position: sticky; top: 64px; z-index: 30; background: var(--bg); padding-top: 8px; }
+.tabs::-webkit-scrollbar { display: none; }
+.tabs [role="tab"] { flex: none; font: 600 .9rem var(--font); padding: 10px 16px; margin-bottom: -2px; border-bottom: 2px solid transparent; color: var(--muted); white-space: nowrap; transition: color .2s, border-color .2s; border-radius: 8px 8px 0 0; }
+.tabs [role="tab"]:hover { color: var(--fg); background: var(--surface); }
+.tabs [role="tab"][aria-selected="true"] { color: var(--accent); border-bottom-color: var(--accent); }
+.tool[hidden] { display: none; }
+@media (max-width: 860px) { .tabs { top: 56px; margin-left: -20px; margin-right: -20px; padding-left: 20px; padding-right: 20px; } .tabs [role="tab"] { font-size: .86rem; padding: 9px 12px; } }
 .tool-grid { display: grid; grid-template-columns: 1.45fr 1fr; gap: 28px; align-items: start; }
 .tool-grid > * { min-width: 0; }
 .field { display: grid; gap: 8px; margin-bottom: 18px; }
@@ -707,7 +711,7 @@ body.palette-open { overflow: hidden; }
 .now-updated { font: .78rem var(--mono); color: var(--teal); margin: -12px 0 22px; }
 
 /* ---------- Print additions ---------- */
-@media print { .search-btn, .palette, .filter, .gh-heat, .toc, .tool-nav { display: none !important; } }
+@media print { .search-btn, .palette, .filter, .gh-heat, .toc, .tabs { display: none !important; } .tool[hidden] { display: block; } }
 
 /* ---------- Uses, changelog, decision helper, glossary, shortcuts, newsletter ---------- */
 .uses-grid { max-width: none; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
